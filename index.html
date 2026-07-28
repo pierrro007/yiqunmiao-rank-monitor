@@ -35,6 +35,10 @@ if (typeof Chart === 'undefined') {
   a.bkname:hover{color:#7fb8ff;}
   td a.rk{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;}
   td a.rk:hover{opacity:0.8;}
+  /* 子榜单分布：发现的书（排名）自动换行，避免横向滚动 */
+  #tblSub table, #tblSubDD table{min-width:0;}
+  td.found{white-space:normal;word-break:break-word;line-height:1.9;}
+  span.chip{display:inline-block;margin:2px 10px 2px 0;}
   .foot{color:var(--muted);font-size:12px;line-height:1.7;padding:0 24px 40px;max-width:1200px;margin:0 auto;}
   code{background:#222b36;padding:1px 6px;border-radius:5px;color:#9cdcfe;}
   .badge{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11px;margin-left:8px;}
@@ -363,10 +367,10 @@ if (typeof Chart === 'undefined') {
           const label = f.url
             ? '<a class="bkname" href="' + f.url + '" target="_blank" rel="noopener">' + f.name + '</a>'
             : f.name;
-          return label + '：第' + f.rank + '名';
-        }).join('、');
+          return '<span class="chip">' + label + '：第' + f.rank + '名</span>';
+        }).join('');
         const tr = document.createElement('tr');
-        tr.innerHTML = '<td>' + cat + '</td><td>' + pair[1] + '</td><td>' + chips + '</td>';
+        tr.innerHTML = '<td>' + cat + '</td><td>' + pair[1] + '</td><td class="found">' + chips + '</td>';
         subTbody.appendChild(tr);
         subRows++;
       });
@@ -398,10 +402,10 @@ if (typeof Chart === 'undefined') {
           const label = f.url
             ? '<a class="bkname" href="' + f.url + '" target="_blank" rel="noopener">' + f.name + '</a>'
             : f.name;
-          return label + '：第' + f.rank + '名';
-        }).join('、');
+          return '<span class="chip">' + label + '：第' + f.rank + '名</span>';
+        }).join('');
         const tr = document.createElement('tr');
-        tr.innerHTML = '<td>' + disp + '</td><td>' + p[1] + '</td><td>' + chips + '</td>';
+        tr.innerHTML = '<td>' + disp + '</td><td>' + p[1] + '</td><td class="found">' + chips + '</td>';
         subTbodyDD.appendChild(tr);
         subRows++;
       });
