@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updated_at": "2026-07-28 11:08",
+    "updated_at": "2026-07-28 11:34",
     "last_change_date": "2026-07-28",
     "last_probe_date": "2026-07-28",
-    "changed_today": true,
+    "changed_today": false,
     "dd_fetch": "",
     "jd_fetch": ""
   },
@@ -2831,6 +2831,73 @@
         null,
         null
       ]
+    }
+  },
+  "urls": {
+    "dd_new": {
+      "小剧场特典版": "https://product.dangdang.com/30081621.html",
+      "小剧场普通版": "https://product.dangdang.com/30081745.html"
+    },
+    "dd_best": {
+      "西游2": "https://product.dangdang.com/30019679.html",
+      "西游1": "https://product.dangdang.com/29866802.html",
+      "历史16": "https://product.dangdang.com/29953539.html",
+      "历史1": "https://product.dangdang.com/29583240.html",
+      "历史4": "https://product.dangdang.com/27944021.html",
+      "历史2": "https://product.dangdang.com/29583242.html"
+    },
+    "jd_sales": {
+      "小剧场印签版": "https://item.jd.com/14752327.html"
+    },
+    "jd_new": {
+      "小剧场印签版": "https://item.jd.com/14752327.html",
+      "小剧场京东特典版": "https://item.jd.com/14752247.html"
+    },
+    "jd_sales_小说文学": {
+      "历史1-16套装": "https://item.jd.com/15191324.html",
+      "西游1": "https://item.jd.com/14971802.html",
+      "西游2": "https://item.jd.com/15327630.html",
+      "历史16": "https://item.jd.com/15190830.html",
+      "历史1": "https://item.jd.com/14917078.html",
+      "历史15": "https://item.jd.com/14915900.html",
+      "历史1-3套装": "https://item.jd.com/14407673.html",
+      "历史14": "https://item.jd.com/14167991.html"
+    },
+    "jd_new_童书": {
+      "小剧场京东特典版": "https://item.jd.com/15366112.html"
+    },
+    "jd_sales_励志与成功": {
+      "历史1-3套装": "https://item.jd.com/14066128.html",
+      "西游1": "https://item.jd.com/15075400.html"
+    },
+    "jd_sales_动漫": {
+      "小剧场印签版": "https://item.jd.com/14752327.html",
+      "西游2": "https://item.jd.com/15327630.html",
+      "西游1": "https://item.jd.com/14971802.html",
+      "小剧场京东特典版": "https://item.jd.com/14752247.html",
+      "历史1-16套装": "https://item.jd.com/15191324.html",
+      "历史16": "https://item.jd.com/15190830.html",
+      "历史1": "https://item.jd.com/14917078.html",
+      "历史15": "https://item.jd.com/14915900.html",
+      "历史7": "https://item.jd.com/12740027.html",
+      "历史13": "https://item.jd.com/14210710.html",
+      "历史14": "https://item.jd.com/14167991.html",
+      "历史6": "https://item.jd.com/12866034.html",
+      "历史11": "https://item.jd.com/13465069.html",
+      "历史12": "https://item.jd.com/13957398.html",
+      "历史3": "https://item.jd.com/14003394.html",
+      "历史5": "https://item.jd.com/12716746.html",
+      "历史8": "https://item.jd.com/13264530.html",
+      "历史2": "https://item.jd.com/14003396.html",
+      "历史9": "https://item.jd.com/13504406.html",
+      "历史1-3套装": "https://item.jd.com/14541811.html",
+      "历史4": "https://item.jd.com/12716766.html",
+      "历史10": "https://item.jd.com/13136339.html"
+    },
+    "jd_new_动漫": {
+      "小剧场印签版": "https://item.jd.com/14752327.html",
+      "小剧场京东特典版": "https://item.jd.com/14752247.html",
+      "西游1": "https://item.jd.com/15362226.html"
     }
   }
 }
