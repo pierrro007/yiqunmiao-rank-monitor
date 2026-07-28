@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>图书排名监控 · 当当 + 京东 · 折线图</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+// CDN 兜底：jsdelivr 在境内偶发不稳，失败时自动改用境内 BootCDN
+if (typeof Chart === 'undefined') {
+  document.write('<script src="https://cdn.bootcdn.net/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"><\/script>');
+}
+</script>
 <style>
   :root{ --bg:#0f1419; --panel:#1a212b; --line:#2a3340; --text:#e6edf3; --muted:#8b97a7; --accent:#ff4d4f; }
   *{box-sizing:border-box;}
