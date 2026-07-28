@@ -77,7 +77,7 @@ def dd_book_key(title):
     if m:
         return "西游" + m.group(1)
     if "小剧场" in title:
-        return "小剧场普通版" if "普通版" in title else "小剧场特典版"
+        return "小剧场特典版" if "特典版" in title else "小剧场普通版"
     return None
 
 
