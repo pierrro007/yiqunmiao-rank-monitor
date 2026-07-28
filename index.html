@@ -36,6 +36,10 @@
   .fresh-badge{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11px;margin-left:4px;}
   .fresh-badge.today{background:rgba(82,196,26,.15);color:#95de64;}
   .fresh-badge.stale{background:rgba(255,77,79,.15);color:#ff7875;}
+  .day-tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;-webkit-overflow-scrolling:touch;}
+  .day-tabs button{flex:0 0 auto;background:#222b36;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;white-space:nowrap;}
+  .day-tabs button.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .sub-h{font-size:13px;margin:16px 0 8px;color:var(--text);font-weight:600;}
 
   @media (max-width:640px){
     header{padding:16px 16px 14px;}
@@ -49,6 +53,7 @@
     .foot{padding:0 16px 32px;font-size:11px;}
     table{font-size:12px;min-width:520px;}
     th,td{padding:6px 8px;}
+    .day-tabs button{padding:5px 10px;font-size:11px;}
   }
 </style>
 </head>
@@ -88,21 +93,21 @@
   </div>
 
   <div class="card">
-    <h2>京东子榜单分布 <span class="badge badge-jd">13 大分类 × 销量/新书</span></h2>
-    <p class="hint">京东图书榜下设分类子榜（各 100 名）。下表为最新一日在这些子榜中出现的一群喵相关书及排名；无出现的分类不列出。</p>
-    <div class="tbl-wrap">
-      <table id="tblSub">
-        <thead><tr><th>分类</th><th>榜单类型</th><th>发现的书（排名）</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>最新一日排名总表</h2>
+    <h2>每日留底 · 按天倒序浏览 <span class="badge badge-jd">点击日期查看当天全榜明细</span></h2>
+    <p class="hint">下列为「留底数据」：选定某天后，展示当天在四主榜 + 京东13子榜的一群喵相关书完整排名。默认显示最新一天；点击其他日期可回溯历史（日期由新到旧排列）。</p>
+    <div id="dayTabs" class="day-tabs"></div>
+    <div id="dayLabel" class="fresh"></div>
+    <h3 class="sub-h">四主榜总表</h3>
     <div class="tbl-wrap">
       <table id="tbl">
         <thead><tr><th>#</th><th>产品</th><th>当当畅销榜</th><th>当当新书榜</th><th>京东销量榜</th><th>京东新书榜</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <h3 class="sub-h">京东子榜单分布</h3>
+    <div class="tbl-wrap">
+      <table id="tblSub">
+        <thead><tr><th>分类</th><th>榜单类型</th><th>发现的书（排名）</th></tr></thead>
         <tbody></tbody>
       </table>
     </div>
@@ -114,7 +119,7 @@
   <ul>
     <li><b>四张图分开看</b>：当当新书热卖榜 / 当当图书畅销榜 / 京东图书销量榜 / 京东新书热卖榜。各榜口径不同，不可跨图比数字。</li>
     <li><b>多 SKU / 套装拆分</b>：同一书的不同版本（印签版/京东特典版/特典版/普通版）以及套装（历史1-16套装、西游1-2套装、历史1-3礼盒）只要进了排行榜，都作为独立线统计。京东「未上榜」= 未进前 200；当当「未上榜」= 未进前 500。</li>
-    <li><b>京东子榜单</b>：除主榜外，额外监控京东 13 大分类子榜（小说文学/童书/学考/经管/励志与成功/人文社科/生活/青春文学/艺术/动漫/考试/进口原版/科技）× 销量/新书，各 100 名。这些子榜只展示「最新一日」分布，不画时间折线。</li>
+    <li><b>京东子榜单</b>：除主榜外，额外监控京东 13 大分类子榜（小说文学/童书/学考/经管/励志与成功/人文社科/生活/青春文学/艺术/动漫/考试/进口原版/科技）× 销量/新书，各 100 名。这些子榜可在「每日留底」卡片中按天浏览各日分布，不画时间折线。</li>
     <li><b>新鲜度判定</b>：网页以「最近一次发现排名变化的日期」为准。若今日探测这些书在所有榜单（含子榜）排名较昨日无任何变化，则判定为旧数据（榜单未刷新），不更新历史；一旦发现变化即写入并标注「今日已更新」。</li>
   </ul>
 </div>
@@ -243,10 +248,10 @@
     div.innerHTML = '⏸ 今日探测：这些书在所有榜单（含京东子榜）排名较昨日<b>无变化</b>，数据仍为 <b>' + lastChange + '</b>（榜单未刷新，未更新历史）· 最后探测 ' + (meta.last_probe_date||'—');
   }
 
-  // 最新一日总表（按产品聚合：当当畅销 / 当当新书 / 京东销量榜 / 京东新书榜）
-  const last = dates.length - 1;
-  const tb = document.querySelector('#tbl tbody');
+  // ===== 每日留底（按天倒序浏览）=====
+  const JD_SUBCATS = ["小说文学","童书","学考","经管","励志与成功","人文社科","生活","青春文学","艺术","动漫","考试","进口原版","科技"];
 
+  // 产品聚合（仅依赖 key 集合，与日期无关，构建一次即可）
   const productMap = {};
   function addKey(src, board){
     Object.keys(src).forEach(function(k){
@@ -278,48 +283,85 @@
     return '<td class="' + cls + '">第 ' + val + ' 名</td>';
   }
 
-  products.forEach(function(p, i){
-    const ddKey = p.keys.dd;
-    const ddNewKey = p.keys.ddNew;
-    const salesKey = p.keys.jdSales;
-    const newKey = p.keys.jdNew;
-    const ddVal = ddKey ? (series[ddKey] && series[ddKey][last]) : null;
-    const ddNewVal = ddNewKey ? (seriesNew[ddNewKey] && seriesNew[ddNewKey][last]) : null;
-    const salesVal = salesKey ? (seriesJDSales[salesKey] && seriesJDSales[salesKey][last]) : null;
-    const newVal = newKey ? (seriesJDNew[newKey] && seriesJDNew[newKey][last]) : null;
-    const tr = document.createElement('tr');
-    tr.innerHTML = '<td>' + (i+1) + '</td><td>' + p.name + '</td>' +
-      rankCell(ddVal) + rankCell(ddNewVal) + rankCell(salesVal) + rankCell(newVal);
-    tb.appendChild(tr);
-  });
-
-  // 京东子榜单分布（最新一日）
-  const JD_SUBCATS = ["小说文学","童书","学考","经管","励志与成功","人文社科","生活","青春文学","艺术","动漫","考试","进口原版","科技"];
+  const tb = document.querySelector('#tbl tbody');
   const subTbody = document.querySelector('#tblSub tbody');
-  let subRows = 0;
-  JD_SUBCATS.forEach(function(cat){
-    [['jd_sales_' + cat, '销量榜'], ['jd_new_' + cat, '新书热卖榜']].forEach(function(pair){
-      const src = boards[pair[0]] || {};
-      const found = [];
-      Object.keys(src).forEach(function(k){
-        const arr = src[k];
-        const v = arr && arr[last];
-        if(v != null) found.push({ name: displayName(k), rank: v });
-      });
-      if(found.length === 0) return;
-      found.sort(function(a, b){ return a.rank - b.rank; });
-      const chips = found.map(function(f){ return f.name + '：第' + f.rank + '名'; }).join('、');
+  const dayTabs = document.getElementById('dayTabs');
+  const dayLabel = document.getElementById('dayLabel');
+
+  function renderSummary(dayIdx){
+    tb.innerHTML = '';
+    products.forEach(function(p, i){
+      const ddKey = p.keys.dd;
+      const ddNewKey = p.keys.ddNew;
+      const salesKey = p.keys.jdSales;
+      const newKey = p.keys.jdNew;
+      const ddVal = ddKey ? (series[ddKey] && series[ddKey][dayIdx]) : null;
+      const ddNewVal = ddNewKey ? (seriesNew[ddNewKey] && seriesNew[ddNewKey][dayIdx]) : null;
+      const salesVal = salesKey ? (seriesJDSales[salesKey] && seriesJDSales[salesKey][dayIdx]) : null;
+      const newVal = newKey ? (seriesJDNew[newKey] && seriesJDNew[newKey][dayIdx]) : null;
       const tr = document.createElement('tr');
-      tr.innerHTML = '<td>' + cat + '</td><td>' + pair[1] + '</td><td>' + chips + '</td>';
-      subTbody.appendChild(tr);
-      subRows++;
+      tr.innerHTML = '<td>' + (i+1) + '</td><td>' + p.name + '</td>' +
+        rankCell(ddVal) + rankCell(ddNewVal) + rankCell(salesVal) + rankCell(newVal);
+      tb.appendChild(tr);
     });
-  });
-  if(subRows === 0){
-    const tr = document.createElement('tr');
-    tr.innerHTML = '<td colspan="3" class="rank-none">最新一日各子榜均未发现一群喵相关书</td>';
-    subTbody.appendChild(tr);
   }
+
+  function renderSub(dayIdx){
+    subTbody.innerHTML = '';
+    let subRows = 0;
+    JD_SUBCATS.forEach(function(cat){
+      [['jd_sales_' + cat, '销量榜'], ['jd_new_' + cat, '新书热卖榜']].forEach(function(pair){
+        const src = boards[pair[0]] || {};
+        const found = [];
+        Object.keys(src).forEach(function(k){
+          const arr = src[k];
+          const v = arr && arr[dayIdx];
+          if(v != null) found.push({ name: displayName(k), rank: v });
+        });
+        if(found.length === 0) return;
+        found.sort(function(a, b){ return a.rank - b.rank; });
+        const chips = found.map(function(f){ return f.name + '：第' + f.rank + '名'; }).join('、');
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + cat + '</td><td>' + pair[1] + '</td><td>' + chips + '</td>';
+        subTbody.appendChild(tr);
+        subRows++;
+      });
+    });
+    if(subRows === 0){
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td colspan="3" class="rank-none">该日各子榜均未发现一群喵相关书</td>';
+      subTbody.appendChild(tr);
+    }
+  }
+
+  let currentDay = dates.length - 1;
+
+  function buildTabs(){
+    dayTabs.innerHTML = '';
+    // 倒序：最新一天在前
+    for(let i = dates.length - 1; i >= 0; i--){
+      const btn = document.createElement('button');
+      btn.textContent = dates[i];
+      if(i === currentDay) btn.className = 'active';
+      btn.addEventListener('click', function(){
+        currentDay = i;
+        Array.prototype.forEach.call(dayTabs.children, function(c){ c.className = ''; });
+        btn.className = 'active';
+        renderDay();
+      });
+      dayTabs.appendChild(btn);
+    }
+  }
+
+  function renderDay(){
+    renderSummary(currentDay);
+    renderSub(currentDay);
+    const order = dates.length - currentDay; // 倒序第几天
+    dayLabel.innerHTML = '查看日期：<b>' + dates[currentDay] + '</b>（共 ' + dates.length + ' 天记录，倒序第 ' + order + ' 天）';
+  }
+
+  buildTabs();
+  renderDay();
 })();
 </script>
 </body>
