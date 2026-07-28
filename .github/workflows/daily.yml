@@ -34,6 +34,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add rank-history.json
+          # product-map.json：商品ID→书名映射（书改名也认得出），需一并持久化
+          [ -f product-map.json ] && git add product-map.json
           if git diff --cached --quiet; then
             echo "今日数据无变化，跳过提交"
           else
