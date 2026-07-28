@@ -20,12 +20,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 配置 Python
-        uses: actions/setup-python@v5
+        uses: setup-python@v5
         with:
           python-version: '3.11'
 
       - name: 运行监控（抓取四主榜 + 京东13子榜 → 变化判定 → 落库）
-        run: python3 monitor_run.py
+        run: python3 monitor_run.py | tee result.json
 
       - name: 提交并推送变化
         env:
@@ -40,3 +40,10 @@ jobs:
             git commit -m "chore: 每日排行榜更新 $(TZ=Asia/Shanghai date +%F)"
             git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }}.git HEAD:main
           fi
+
+      - name: 推送飞书（有变化时）
+        if: always()
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+        run: python3 feishu_push.py
