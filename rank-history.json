@@ -1,9 +1,9 @@
 {
   "meta": {
-    "updated_at": "2026-07-28 11:50",
+    "updated_at": "2026-07-28 13:32",
     "last_change_date": "2026-07-28",
     "last_probe_date": "2026-07-28",
-    "changed_today": false,
+    "changed_today": true,
     "dd_fetch": "",
     "jd_fetch": ""
   },
@@ -2831,6 +2831,194 @@
         null,
         null
       ]
+    },
+    "dd_best_动漫幽默": {
+      "小剧场特典版": [
+        null,
+        null
+      ],
+      "小剧场普通版": [
+        null,
+        null
+      ],
+      "历史1": [
+        null,
+        8
+      ],
+      "历史2": [
+        null,
+        12
+      ],
+      "历史3": [
+        null,
+        14
+      ],
+      "历史4": [
+        null,
+        11
+      ],
+      "历史5": [
+        null,
+        15
+      ],
+      "历史6": [
+        null,
+        21
+      ],
+      "历史7": [
+        null,
+        38
+      ],
+      "历史8": [
+        null,
+        32
+      ],
+      "历史9": [
+        null,
+        39
+      ],
+      "历史10": [
+        null,
+        50
+      ],
+      "历史11": [
+        null,
+        31
+      ],
+      "历史12": [
+        null,
+        47
+      ],
+      "历史13": [
+        null,
+        25
+      ],
+      "历史14": [
+        null,
+        18
+      ],
+      "历史15": [
+        null,
+        13
+      ],
+      "历史16": [
+        null,
+        3
+      ],
+      "西游1": [
+        null,
+        2
+      ],
+      "西游2": [
+        null,
+        1
+      ],
+      "历史1-16套装": [
+        null,
+        null
+      ],
+      "西游1-2套装": [
+        null,
+        null
+      ],
+      "历史1-3套装": [
+        null,
+        99
+      ]
+    },
+    "dd_new_动漫幽默": {
+      "小剧场特典版": [
+        null,
+        1
+      ],
+      "小剧场普通版": [
+        null,
+        4
+      ],
+      "历史1": [
+        null,
+        null
+      ],
+      "历史2": [
+        null,
+        null
+      ],
+      "历史3": [
+        null,
+        null
+      ],
+      "历史4": [
+        null,
+        null
+      ],
+      "历史5": [
+        null,
+        null
+      ],
+      "历史6": [
+        null,
+        null
+      ],
+      "历史7": [
+        null,
+        null
+      ],
+      "历史8": [
+        null,
+        null
+      ],
+      "历史9": [
+        null,
+        null
+      ],
+      "历史10": [
+        null,
+        null
+      ],
+      "历史11": [
+        null,
+        null
+      ],
+      "历史12": [
+        null,
+        null
+      ],
+      "历史13": [
+        null,
+        null
+      ],
+      "历史14": [
+        null,
+        null
+      ],
+      "历史15": [
+        null,
+        null
+      ],
+      "历史16": [
+        null,
+        null
+      ],
+      "西游1": [
+        null,
+        null
+      ],
+      "西游2": [
+        null,
+        null
+      ],
+      "历史1-16套装": [
+        null,
+        null
+      ],
+      "西游1-2套装": [
+        null,
+        null
+      ],
+      "历史1-3套装": [
+        null,
+        null
+      ]
     }
   },
   "urls": {
@@ -2898,6 +3086,32 @@
       "小剧场印签版": "https://item.jd.com/14752327.html",
       "小剧场京东特典版": "https://item.jd.com/14752247.html",
       "西游1": "https://item.jd.com/15362226.html"
+    },
+    "dd_best_动漫幽默": {
+      "西游2": "https://product.dangdang.com/30019679.html",
+      "西游1": "https://product.dangdang.com/29866802.html",
+      "历史16": "https://product.dangdang.com/29953539.html",
+      "历史1": "https://product.dangdang.com/29590803.html",
+      "历史4": "https://product.dangdang.com/27944021.html",
+      "历史2": "https://product.dangdang.com/29583242.html",
+      "历史15": "https://product.dangdang.com/29837229.html",
+      "历史3": "https://product.dangdang.com/29583241.html",
+      "历史5": "https://product.dangdang.com/27944020.html",
+      "历史12345678910111213141516": "https://product.dangdang.com/29957823.html",
+      "历史14": "https://product.dangdang.com/29732458.html",
+      "历史6": "https://product.dangdang.com/28547443.html",
+      "历史13": "https://product.dangdang.com/29638444.html",
+      "历史11": "https://product.dangdang.com/29475407.html",
+      "历史8": "https://product.dangdang.com/29242265.html",
+      "历史7": "https://product.dangdang.com/29139281.html",
+      "历史9": "https://product.dangdang.com/29325171.html",
+      "历史12": "https://product.dangdang.com/29568955.html",
+      "历史10": "https://product.dangdang.com/29392943.html",
+      "历史1-3套装": "https://product.dangdang.com/29589241.html"
+    },
+    "dd_new_动漫幽默": {
+      "小剧场特典版": "https://product.dangdang.com/30081621.html",
+      "小剧场普通版": "https://product.dangdang.com/30081745.html"
     }
   }
 }
