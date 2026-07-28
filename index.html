@@ -31,11 +31,10 @@ if (typeof Chart === 'undefined') {
   .rank-top{color:#ff7a45;font-weight:700;}
   .rank-mid{color:#ffd666;}
   .rank-none{color:var(--muted);}
-  a.buy{display:inline-block;margin-left:6px;padding:0 6px;border-radius:8px;font-size:11px;
-        text-decoration:none;border:1px solid #2c3947;color:#9db4cc;vertical-align:middle;}
-  a.buy:hover{border-color:#4a90d9;color:#dce8f5;}
   a.bkname{color:inherit;text-decoration:none;border-bottom:1px dotted #4a90d9;}
   a.bkname:hover{color:#7fb8ff;}
+  td a.rk{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;}
+  td a.rk:hover{opacity:0.8;}
   .foot{color:var(--muted);font-size:12px;line-height:1.7;padding:0 24px 40px;max-width:1200px;margin:0 auto;}
   code{background:#222b36;padding:1px 6px;border-radius:5px;color:#9cdcfe;}
   .badge{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11px;margin-left:8px;}
@@ -137,7 +136,7 @@ if (typeof Chart === 'undefined') {
   <ul>
     <li><b>四张图分开看</b>：当当新书热卖榜 / 当当图书畅销榜 / 京东图书销量榜 / 京东新书热卖榜。各榜口径不同，不可跨图比数字。</li>
     <li><b>多 SKU / 套装拆分</b>：同一书的不同版本（印签版/京东特典版/特典版/普通版）以及套装（历史1-16套装、西游1-2套装、历史1-3礼盒）只要进了排行榜，都作为独立线统计。京东「未上榜」= 未进前 200；当当「未上榜」= 未进前 500。</li>
-    <li><b>京东 + 当当子榜单</b>：除主榜外，额外监控京东 13 大分类子榜（小说文学/童书/学考/经管/励志与成功/人文社科/生活/青春文学/艺术/动漫/考试/进口原版/科技）× 销量/新书，各 100 名；以及当当子分类榜（如 动漫/幽默 的畅销榜 + 新书热卖榜，各前 240 名）。这些子榜可在「每日留底」卡片中按天浏览各日分布，不画时间折线；书名可点击跳转对应平台商品页。</li>
+    <li><b>京东 + 当当子榜单</b>：除主榜外，额外监控京东 13 大分类子榜（小说文学/童书/学考/经管/励志与成功/人文社科/生活/青春文学/艺术/动漫/考试/进口原版/科技）× 销量/新书，各 100 名；以及当当子分类榜（如 动漫/幽默 的畅销榜 + 新书热卖榜，各前 240 名）。这些子榜可在「每日留底」卡片中按天浏览各日分布，不画时间折线；四主榜总表里的<b>排名数字</b>可点击跳转对应平台商品页。</li>
     <li><b>新鲜度判定</b>：网页以「最近一次发现排名变化的日期」为准。若今日探测这些书在所有榜单（含子榜）排名较昨日无任何变化，则判定为旧数据（榜单未刷新），不更新历史；一旦发现变化即写入并标注「今日已更新」。</li>
   </ul>
 </div>
@@ -305,12 +304,14 @@ if (typeof Chart === 'undefined') {
     return weight(a.name) - weight(b.name);
   });
 
-  function rankCell(val){
+  function rankCell(val, url){
     if(val == null) return '<td class="rank-none">未上榜</td>';
     let cls = 'rank-none';
     if(val <= 50) cls = 'rank-top';
     else if(val <= 200) cls = 'rank-mid';
-    return '<td class="' + cls + '">第 ' + val + ' 名</td>';
+    const text = '第 ' + val + ' 名';
+    const inner = url ? '<a class="rk" href="' + url + '" target="_blank" rel="noopener">' + text + '</a>' : text;
+    return '<td class="' + cls + '">' + inner + '</td>';
   }
 
   const tb = document.querySelector('#tbl tbody');
@@ -330,17 +331,15 @@ if (typeof Chart === 'undefined') {
       const ddNewVal = ddNewKey ? (seriesNew[ddNewKey] && seriesNew[ddNewKey][dayIdx]) : null;
       const salesVal = salesKey ? (seriesJDSales[salesKey] && seriesJDSales[salesKey][dayIdx]) : null;
       const newVal = newKey ? (seriesJDNew[newKey] && seriesJDNew[newKey][dayIdx]) : null;
-      // 商品链接：当当 / 京东 分开（同一本书两平台链接不同）
+      // 商品链接：当当 / 京东 分开（同一本书两平台链接不同），直接挂在排名数字上
       const jdBoards = ['jd_sales','jd_new'];
       JD_SUBCATS.forEach(function(c){ jdBoards.push('jd_sales_' + c, 'jd_new_' + c); });
       const ddUrl = urlFor(['dd_best','dd_new'], ddKey) || urlFor(['dd_best','dd_new'], ddNewKey);
       const jdUrl = urlFor(jdBoards, salesKey) || urlFor(jdBoards, newKey);
-      let nameHtml = p.name;
-      if(ddUrl) nameHtml += '<a class="buy" href="' + ddUrl + '" target="_blank" rel="noopener">当当</a>';
-      if(jdUrl) nameHtml += '<a class="buy" href="' + jdUrl + '" target="_blank" rel="noopener">京东</a>';
       const tr = document.createElement('tr');
-      tr.innerHTML = '<td>' + (i+1) + '</td><td>' + nameHtml + '</td>' +
-        rankCell(ddVal) + rankCell(ddNewVal) + rankCell(salesVal) + rankCell(newVal);
+      tr.innerHTML = '<td>' + (i+1) + '</td><td>' + p.name + '</td>' +
+        rankCell(ddVal, ddUrl) + rankCell(ddNewVal, ddUrl) +
+        rankCell(salesVal, jdUrl) + rankCell(newVal, jdUrl);
       tb.appendChild(tr);
     });
   }
