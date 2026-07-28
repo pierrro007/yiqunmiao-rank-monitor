@@ -25,6 +25,11 @@
   .rank-top{color:#ff7a45;font-weight:700;}
   .rank-mid{color:#ffd666;}
   .rank-none{color:var(--muted);}
+  a.buy{display:inline-block;margin-left:6px;padding:0 6px;border-radius:8px;font-size:11px;
+        text-decoration:none;border:1px solid #2c3947;color:#9db4cc;vertical-align:middle;}
+  a.buy:hover{border-color:#4a90d9;color:#dce8f5;}
+  a.bkname{color:inherit;text-decoration:none;border-bottom:1px dotted #4a90d9;}
+  a.bkname:hover{color:#7fb8ff;}
   .foot{color:var(--muted);font-size:12px;line-height:1.7;padding:0 24px 40px;max-width:1200px;margin:0 auto;}
   code{background:#222b36;padding:1px 6px;border-radius:5px;color:#9cdcfe;}
   .badge{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11px;margin-left:8px;}
@@ -138,6 +143,16 @@
   }
 
   const { meta, dates, boards } = DATA;
+  const URLS = DATA.urls || {};   // {榜单: {书key: 商品链接}}，以商品ID为锚点
+  // 按优先级在多个榜单中查该书的链接
+  function urlFor(boardList, key){
+    if(!key) return null;
+    for(let i = 0; i < boardList.length; i++){
+      const u = (URLS[boardList[i]] || {})[key];
+      if(u) return u;
+    }
+    return null;
+  }
   const series       = boards.dd_best  || {};
   const seriesNew    = boards.dd_new   || {};
   const seriesJDSales= boards.jd_sales || {};
@@ -299,8 +314,16 @@
       const ddNewVal = ddNewKey ? (seriesNew[ddNewKey] && seriesNew[ddNewKey][dayIdx]) : null;
       const salesVal = salesKey ? (seriesJDSales[salesKey] && seriesJDSales[salesKey][dayIdx]) : null;
       const newVal = newKey ? (seriesJDNew[newKey] && seriesJDNew[newKey][dayIdx]) : null;
+      // 商品链接：当当 / 京东 分开（同一本书两平台链接不同）
+      const jdBoards = ['jd_sales','jd_new'];
+      JD_SUBCATS.forEach(function(c){ jdBoards.push('jd_sales_' + c, 'jd_new_' + c); });
+      const ddUrl = urlFor(['dd_best','dd_new'], ddKey) || urlFor(['dd_best','dd_new'], ddNewKey);
+      const jdUrl = urlFor(jdBoards, salesKey) || urlFor(jdBoards, newKey);
+      let nameHtml = p.name;
+      if(ddUrl) nameHtml += '<a class="buy" href="' + ddUrl + '" target="_blank" rel="noopener">当当</a>';
+      if(jdUrl) nameHtml += '<a class="buy" href="' + jdUrl + '" target="_blank" rel="noopener">京东</a>';
       const tr = document.createElement('tr');
-      tr.innerHTML = '<td>' + (i+1) + '</td><td>' + p.name + '</td>' +
+      tr.innerHTML = '<td>' + (i+1) + '</td><td>' + nameHtml + '</td>' +
         rankCell(ddVal) + rankCell(ddNewVal) + rankCell(salesVal) + rankCell(newVal);
       tb.appendChild(tr);
     });
@@ -316,11 +339,17 @@
         Object.keys(src).forEach(function(k){
           const arr = src[k];
           const v = arr && arr[dayIdx];
-          if(v != null) found.push({ name: displayName(k), rank: v });
+          if(v != null) found.push({ name: displayName(k), rank: v,
+            url: urlFor([pair[0], 'jd_sales', 'jd_new'], k) });
         });
         if(found.length === 0) return;
         found.sort(function(a, b){ return a.rank - b.rank; });
-        const chips = found.map(function(f){ return f.name + '：第' + f.rank + '名'; }).join('、');
+        const chips = found.map(function(f){
+          const label = f.url
+            ? '<a class="bkname" href="' + f.url + '" target="_blank" rel="noopener">' + f.name + '</a>'
+            : f.name;
+          return label + '：第' + f.rank + '名';
+        }).join('、');
         const tr = document.createElement('tr');
         tr.innerHTML = '<td>' + cat + '</td><td>' + pair[1] + '</td><td>' + chips + '</td>';
         subTbody.appendChild(tr);

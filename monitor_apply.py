@@ -135,6 +135,8 @@ def main():
     hist = load_history()
     dates = hist.get("dates", [])
     boards = hist.get("boards", {b: {} for b in ALL_BOARDS})
+    # 商品链接（来自抓取快照的 urls 字段；以商品 ID 为锚点，稳定可点击）
+    urls = inp.get("urls", {}) or {}
 
     # 最近一日快照
     prev_snap = {b: {} for b in BOARDS}
@@ -179,6 +181,18 @@ def main():
     hist["dates"] = dates
     hist["boards"] = boards
     hist["meta"] = meta
+
+    # 累积合并商品链接：历史已有的保留，本次抓到的覆盖/新增
+    # 结构 {board: {key: url}}，即使商品暂时掉榜也不丢链接
+    hist_urls = hist.get("urls", {}) or {}
+    for b, kv in urls.items():
+        if not isinstance(kv, dict):
+            continue
+        dst = hist_urls.setdefault(b, {})
+        for k, u in kv.items():
+            if u:
+                dst[k] = u
+    hist["urls"] = hist_urls
 
     with open(JSON_PATH, "w", encoding="utf-8") as f:
         json.dump(hist, f, ensure_ascii=False, indent=2)

@@ -9,14 +9,23 @@ monitor_fetch.py —— 抓取「四主榜 + 京东 13 子榜」的 一群喵 �
   - 京东主榜：图书销量榜(moduleType=1) / 新书热卖榜(moduleType=2)，各取前 200。
   - 京东子榜：13 大分类(小说文学/童书/学考/经管/励志与成功/人文社科/生活/青春文学/艺术/动漫/考试/进口原版/科技) × 销量/新书 = 26 榜，各 100 名。
 书名匹配同时识别「单册」与「套装/礼盒」(历史1-16套装、西游1-2套装、历史1-3礼盒)，各归一个 key。
-每本书同一榜单只记一个最高（最小）排名。
+
+稳定标识：书名会变，但商品 ID（当当 product.dangdang.com/<id>.html / 京东 bookId）基本不变。
+因此本脚本额外：
+  1) 抓取每个书的商品 URL，随快照输出到 urls 字段；
+  2) 维护 platformID -> key 的持久映射（product-map.json），以商品 ID 作为判重锚点，
+     即使书名改了也能认出同一本书。
 """
 import json
+import os
 import subprocess
 import re
 import sys
 import time
 import urllib.parse
+
+BASE = os.path.dirname(os.path.abspath(__file__))
+MAP_PATH = os.path.join(BASE, "product-map.json")
 
 UA = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -29,6 +38,31 @@ JD_SUBCATS = [
     "小说文学", "童书", "学考", "经管", "励志与成功", "人文社科", "生活",
     "青春文学", "艺术", "动漫", "考试", "进口原版", "科技",
 ]
+
+# 稳定商品映射：platformID -> 内部 key（书名会变，商品 ID 不变，作为判重锚点）
+PID_MAP = {}
+# 本次抓取得到的 榜单 -> key -> 商品 URL
+URL_MAP = {}
+
+
+def load_map():
+    global PID_MAP
+    if os.path.exists(MAP_PATH):
+        try:
+            with open(MAP_PATH, "r", encoding="utf-8") as f:
+                PID_MAP = json.load(f)
+        except Exception:
+            PID_MAP = {}
+    else:
+        PID_MAP = {}
+
+
+def save_map():
+    try:
+        with open(MAP_PATH, "w", encoding="utf-8") as f:
+            json.dump(PID_MAP, f, ensure_ascii=False, indent=2)
+    except Exception:
+        pass
 
 
 def curl(url, referer=None, timeout=30):
@@ -52,7 +86,7 @@ def decode_html(b):
     return b.decode("utf-8", "ignore")
 
 
-# ---------------- 书名 -> key 映射 ----------------
+# ---------------- 书名 -> key 映射（标题兜底） ----------------
 def _is_set(title, word, span_re):
     """判断是否为某系列的套装（word=历史/西游，span_re 匹配册数区间，须用负向预查排除页码范围如 1-156）。"""
     if word not in title:
@@ -103,6 +137,29 @@ def jd_book_key(title):
     return None
 
 
+# ---------------- 以商品 ID 为锚点的判重（书名只是兜底） ----------------
+def dd_key_for(title, pid):
+    if pid:
+        mk = "dd:" + pid
+        if mk in PID_MAP:
+            return PID_MAP[mk]
+    k = dd_book_key(title)
+    if k and pid:
+        PID_MAP["dd:" + pid] = k
+    return k
+
+
+def jd_key_for(title, book_id):
+    if book_id:
+        mk = "jd:" + str(book_id)
+        if mk in PID_MAP:
+            return PID_MAP[mk]
+    k = jd_book_key(title)
+    if k and book_id:
+        PID_MAP["jd:" + str(book_id)] = k
+    return k
+
+
 # ---------------- 当当 ----------------
 _BOOK_RE = [
     r'title="([^"]*如果历史是一群喵\d+[^"]*)"',
@@ -117,28 +174,7 @@ _BOOK_RE = [
 ]
 
 
-def _dd_page_books(html):
-    """返回该页 (title, rank_or_None, idx) 列表。"""
-    out = []
-    lis = re.findall(r"<li[^>]*>(.*?)</li>", html, re.S)
-    i = 0
-    for li in lis:
-        title = None
-        for pat in _BOOK_RE:
-            m = re.search(pat, li)
-            if m:
-                title = m.group(1)
-                break
-        if not title:
-            continue
-        i += 1
-        rm = re.search(r'class="list_num[^"]*"[^>]*>(\d+)\.', li)
-        rank = int(rm.group(1)) if rm else None
-        out.append((title, rank, i))
-    return out
-
-
-def fetch_dangdang(template, max_pages):
+def fetch_dangdang(template, max_pages, board_name):
     result = {}
     for page in range(1, max_pages + 1):
         html = decode_html(curl(template.replace("{page}", str(page))))
@@ -172,9 +208,15 @@ def fetch_dangdang(template, max_pages):
             i += 1
             rm = re.search(r'class="list_num[^"]*"[^>]*>(\d+)\.', li)
             rank = int(rm.group(1)) if rm else ((page - 1) * 20 + i)
-            key = dd_book_key(title)
+            pm = re.search(r'product\.dangdang\.com/(\d+)', li)
+            pid = pm.group(1) if pm else None
+            key = dd_key_for(title, pid)
             if key and key not in result:
                 result[key] = rank
+                if pid:
+                    URL_MAP.setdefault(board_name, {})[key] = (
+                        "https://product.dangdang.com/%s.html" % pid
+                    )
         time.sleep(2)
     return result
 
@@ -202,16 +244,21 @@ def _jd_call(body):
     return (data.get("data") or {}).get("books") or []
 
 
-def _extract(results, books, keyfn):
+def _extract(results, books, keyfn, board):
     for bk in books:
         seq = bk.get("sequence")
         title = bk.get("bookName") or bk.get("name") or ""
-        key = keyfn(title)
+        book_id = bk.get("bookId")
+        key = keyfn(title, book_id)
         if key and key not in results and seq:
             results[key] = seq
+            if book_id:
+                URL_MAP.setdefault(board, {})[key] = (
+                    "https://item.jd.com/%s.html" % book_id
+                )
 
 
-def fetch_jd(module_type, max_pages=2):
+def fetch_jd(module_type, board_name, max_pages=2):
     result = {}
     for page in range(1, max_pages + 1):
         books = _jd_call(
@@ -219,12 +266,12 @@ def fetch_jd(module_type, max_pages=2):
         )
         if not books:
             break
-        _extract(result, books, jd_book_key)
+        _extract(result, books, jd_key_for, board_name)
         time.sleep(0.5)
     return result
 
 
-def fetch_jd_sub(module_type, category, page_size=100):
+def fetch_jd_sub(module_type, category, board_name, page_size=100):
     result = {}
     books = _jd_call(
         {
@@ -237,24 +284,27 @@ def fetch_jd_sub(module_type, category, page_size=100):
             "categoryThree": "",
         }
     )
-    _extract(result, books, jd_book_key)
+    _extract(result, books, jd_key_for, board_name)
     time.sleep(0.3)
     return result
 
 
 def main():
+    load_map()
     # 当当：两榜各翻满前 500
     dd_new = fetch_dangdang(
         "http://bang.dangdang.com/books/newhotsales/01.00.00.00.00.00-24hours-0-0-1-{page}",
         25,
+        "dd_new",
     )
     dd_best = fetch_dangdang(
         "http://bang.dangdang.com/books/bestsellers/01.00.00.00.00.00-24hours-0-0-1-{page}",
         25,
+        "dd_best",
     )
     # 京东主榜
-    jd_sales = fetch_jd(1)
-    jd_new = fetch_jd(2)
+    jd_sales = fetch_jd(1, "jd_sales")
+    jd_new = fetch_jd(2, "jd_new")
 
     out = {
         "dd_new": dd_new,
@@ -262,11 +312,13 @@ def main():
         "jd_sales": jd_sales,
         "jd_new": jd_new,
     }
-    # 京东 7 大分类子榜
+    # 京东 13 大分类子榜
     for cat in JD_SUBCATS:
-        out["jd_sales_" + cat] = fetch_jd_sub(1, cat)
-        out["jd_new_" + cat] = fetch_jd_sub(2, cat)
+        out["jd_sales_" + cat] = fetch_jd_sub(1, cat, "jd_sales_" + cat)
+        out["jd_new_" + cat] = fetch_jd_sub(2, cat, "jd_new_" + cat)
 
+    out["urls"] = URL_MAP
+    save_map()
     print(json.dumps(out, ensure_ascii=False))
 
 
