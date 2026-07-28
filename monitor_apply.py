@@ -96,19 +96,20 @@ def load_history():
 
 
 def snapshot_from_input(inp):
-    """把输入对齐到 EXPECTED key 集，缺失补 null。"""
+    """把输入对齐到 EXPECTED key 集，缺失补 null。仅针对本轮实际抓取的榜(active)。"""
     out = {}
-    for b in BOARDS:
+    active = [b for b in BOARDS if b in inp]
+    for b in active:
         src = inp.get(b, {}) or {}
         out[b] = {k: src.get(k, None) for k in EXPECTED[b]}
-    return out
+    return out, active
 
 
-def diff_changed(prev_snap, new_snap):
-    """prev_snap / new_snap 都是 {board: {key: val}}。返回 (changed, detail_list)"""
+def diff_changed(prev_snap, new_snap, active):
+    """prev_snap / new_snap 都是 {board: {key: val}}。仅比对 active 榜。返回 (changed, detail_list)"""
     changed = False
     detail = []
-    for b in BOARDS:
+    for b in active:
         prev_board = prev_snap.get(b, {})
         new_board = new_snap.get(b, {})
         for k in EXPECTED[b]:
@@ -141,18 +142,17 @@ def main():
         )
         sys.exit(1)
 
-    new_snap = snapshot_from_input(inp)
+    new_snap, active = snapshot_from_input(inp)
     hist = load_history()
     dates = hist.get("dates", [])
     boards = hist.get("boards", {b: {} for b in ALL_BOARDS})
     # 商品链接（来自抓取快照的 urls 字段；以商品 ID 为锚点，稳定可点击）
     urls = inp.get("urls", {}) or {}
 
-    # 最近一日快照
-    prev_snap = {b: {} for b in BOARDS}
+    # 最近一日快照（仅 active 榜，未抓取的榜本轮不参与比较）
+    prev_snap = {b: {} for b in active}
     if dates:
-        last = dates[-1]
-        for b in BOARDS:
+        for b in active:
             prev_snap[b] = {
                 k: (
                     boards.get(b, {}).get(k, [None])[-1]
@@ -162,7 +162,7 @@ def main():
                 for k in EXPECTED[b]
             }
 
-    changed, detail = diff_changed(prev_snap, new_snap)
+    changed, detail = diff_changed(prev_snap, new_snap, active)
     now = beijing_now()
     today = today_str()
 
@@ -174,15 +174,26 @@ def main():
     if changed:
         if is_new_day:
             dates.append(today)
+        target_len = len(dates)
         for b in BOARDS:
             for k in EXPECTED[b]:
                 arr = boards.setdefault(b, {}).setdefault(k, [])
-                # 关键修复：新增 key 在同日（非新的一天）首次写入时数组为空，
-                # 不能下标 [-1]，必须 append。
-                if is_new_day or not arr:
-                    arr.append(new_snap[b][k])
+                # 本轮实际抓取的榜用新值；未抓取的榜沿用上一日值（保持数组与 dates 对齐，不丢历史）
+                today_val = new_snap[b][k] if b in new_snap else (arr[-1] if arr else None)
+                # 1) 补齐历史缺口，确保数组长度最终 == len(dates)
+                while len(arr) < target_len - 1:
+                    arr.append(arr[-1] if arr else None)
+                # 2) 写入今日值
+                if is_new_day:
+                    arr.append(today_val)
                 else:
-                    arr[-1] = new_snap[b][k]
+                    if len(arr) < target_len:
+                        arr.append(today_val)
+                    else:
+                        arr[-1] = today_val
+                # 3) 安全裁剪，杜绝长度溢出
+                if len(arr) > target_len:
+                    del arr[target_len:]
         meta["last_change_date"] = today
         meta["changed_today"] = True
     else:

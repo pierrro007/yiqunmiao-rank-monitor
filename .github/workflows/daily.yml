@@ -24,7 +24,9 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 运行监控（抓取四主榜 + 京东13子榜 → 变化判定 → 落库）
+      - name: 运行监控（仅京东：美国服务器可正常抓取京东；当当子分类页需中国境内环境抓取）
+        env:
+          FETCH_MODE: jd
         run: python3 monitor_run.py | tee result.json
 
       - name: 提交并推送变化

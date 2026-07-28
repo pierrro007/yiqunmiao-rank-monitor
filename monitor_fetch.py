@@ -301,45 +301,46 @@ def fetch_jd_sub(module_type, category, board_name, page_size=100):
 
 def main():
     load_map()
+    # FETCH_MODE: all(默认) / jd(仅京东) / dd(仅当当)
+    # 当当子分类页从美国 IP 抓不到（地域反爬），故当当相关抓取交由「中国境内」环境跑(dd 模式)，
+    # 京东主榜+子榜从 GitHub 美国服务器跑(jd 模式)即可。两种模式输出合一、互补落库。
+    mode = os.environ.get("FETCH_MODE", "all").lower()
     out = {}
-    # 当当子榜优先抓取：避免同一美国 IP 连续请求被当当反爬限流（主榜放后面）
-    for name, code in DD_SUBCATS:
-        sub_key = name.replace("/", "")
-        out["dd_best_" + sub_key] = fetch_dangdang(
-            "http://bang.dangdang.com/books/bestsellers/%s-24hours-0-0-1-{page}" % code,
-            DD_SUB_MAX_PAGES,
-            "dd_best_" + sub_key,
-        )
-        out["dd_new_" + sub_key] = fetch_dangdang(
-            "http://bang.dangdang.com/books/newhotsales/%s-24hours-0-0-1-{page}" % code,
-            DD_SUB_MAX_PAGES,
-            "dd_new_" + sub_key,
-        )
-    # 当当：两榜各翻满前 500
-    out["dd_new"] = fetch_dangdang(
-        "http://bang.dangdang.com/books/newhotsales/01.00.00.00.00.00-24hours-0-0-1-{page}",
-        25,
-        "dd_new",
-    )
-    out["dd_best"] = fetch_dangdang(
-        "http://bang.dangdang.com/books/bestsellers/01.00.00.00.00.00-24hours-0-0-1-{page}",
-        25,
-        "dd_best",
-    )
-    # 京东主榜
-    jd_sales = fetch_jd(1, "jd_sales")
-    jd_new = fetch_jd(2, "jd_new")
 
-    out = {
-        "dd_new": dd_new,
-        "dd_best": dd_best,
-        "jd_sales": jd_sales,
-        "jd_new": jd_new,
-    }
-    # 京东 13 大分类子榜
-    for cat in JD_SUBCATS:
-        out["jd_sales_" + cat] = fetch_jd_sub(1, cat, "jd_sales_" + cat)
-        out["jd_new_" + cat] = fetch_jd_sub(2, cat, "jd_new_" + cat)
+    if mode in ("all", "dd"):
+        # 当当子榜优先抓取：避免同一 IP 连续请求被当当反爬限流（主榜放后面）
+        for name, code in DD_SUBCATS:
+            sub_key = name.replace("/", "")
+            out["dd_best_" + sub_key] = fetch_dangdang(
+                "http://bang.dangdang.com/books/bestsellers/%s-24hours-0-0-1-{page}" % code,
+                DD_SUB_MAX_PAGES,
+                "dd_best_" + sub_key,
+            )
+            out["dd_new_" + sub_key] = fetch_dangdang(
+                "http://bang.dangdang.com/books/newhotsales/%s-24hours-0-0-1-{page}" % code,
+                DD_SUB_MAX_PAGES,
+                "dd_new_" + sub_key,
+            )
+        # 当当：两榜各翻满前 500
+        out["dd_new"] = fetch_dangdang(
+            "http://bang.dangdang.com/books/newhotsales/01.00.00.00.00.00-24hours-0-0-1-{page}",
+            25,
+            "dd_new",
+        )
+        out["dd_best"] = fetch_dangdang(
+            "http://bang.dangdang.com/books/bestsellers/01.00.00.00.00.00-24hours-0-0-1-{page}",
+            25,
+            "dd_best",
+        )
+
+    if mode in ("all", "jd"):
+        # 京东主榜
+        out["jd_sales"] = fetch_jd(1, "jd_sales")
+        out["jd_new"] = fetch_jd(2, "jd_new")
+        # 京东 13 大分类子榜
+        for cat in JD_SUBCATS:
+            out["jd_sales_" + cat] = fetch_jd_sub(1, cat, "jd_sales_" + cat)
+            out["jd_new_" + cat] = fetch_jd_sub(2, cat, "jd_new_" + cat)
 
     out["urls"] = URL_MAP
     save_map()

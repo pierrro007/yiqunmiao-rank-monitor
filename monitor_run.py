@@ -27,6 +27,10 @@ JD_SUBCATS = [
     "小说文学", "童书", "学考", "经管", "励志与成功", "人文社科", "生活",
     "青春文学", "艺术", "动漫", "考试", "进口原版", "科技",
 ]
+# 当当子分类（与 monitor_fetch.py / monitor_apply.py 保持一致）
+DD_SUBCATS = [
+    ("动漫/幽默", "01.09.00.00.00.00"),
+]
 
 
 def seed_history():
@@ -60,6 +64,8 @@ def seed_history():
                     ["dd_new", "dd_best", "jd_sales", "jd_new"]
                     + ["jd_sales_%s" % c for c in JD_SUBCATS]
                     + ["jd_new_%s" % c for c in JD_SUBCATS]
+                    + ["dd_best_%s" % n.replace("/", "") for n, _ in DD_SUBCATS]
+                    + ["dd_new_%s" % n.replace("/", "") for n, _ in DD_SUBCATS]
                 )
             },
         }
