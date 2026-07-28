@@ -223,11 +223,11 @@ def fetch_dangdang(template, max_pages, board_name):
             key = dd_key_for(title, pid)
             if key and key not in result:
                 result[key] = rank
-                if pid:
-                    URL_MAP.setdefault(board_name, {})[key] = (
-                        "https://product.dangdang.com/%s.html" % pid
-                    )
-        time.sleep(2)
+            if pid:
+                URL_MAP.setdefault(board_name, {})[key] = (
+                    "https://product.dangdang.com/%s.html" % pid
+                )
+        time.sleep(3)
     return result
 
 
@@ -301,18 +301,8 @@ def fetch_jd_sub(module_type, category, board_name, page_size=100):
 
 def main():
     load_map()
-    # 当当：两榜各翻满前 500
-    dd_new = fetch_dangdang(
-        "http://bang.dangdang.com/books/newhotsales/01.00.00.00.00.00-24hours-0-0-1-{page}",
-        25,
-        "dd_new",
-    )
-    dd_best = fetch_dangdang(
-        "http://bang.dangdang.com/books/bestsellers/01.00.00.00.00.00-24hours-0-0-1-{page}",
-        25,
-        "dd_best",
-    )
-    # 当当子榜：动漫/幽默 等分类的畅销榜 + 新书热卖榜
+    out = {}
+    # 当当子榜优先抓取：避免同一美国 IP 连续请求被当当反爬限流（主榜放后面）
     for name, code in DD_SUBCATS:
         sub_key = name.replace("/", "")
         out["dd_best_" + sub_key] = fetch_dangdang(
@@ -325,6 +315,17 @@ def main():
             DD_SUB_MAX_PAGES,
             "dd_new_" + sub_key,
         )
+    # 当当：两榜各翻满前 500
+    out["dd_new"] = fetch_dangdang(
+        "http://bang.dangdang.com/books/newhotsales/01.00.00.00.00.00-24hours-0-0-1-{page}",
+        25,
+        "dd_new",
+    )
+    out["dd_best"] = fetch_dangdang(
+        "http://bang.dangdang.com/books/bestsellers/01.00.00.00.00.00-24hours-0-0-1-{page}",
+        25,
+        "dd_best",
+    )
     # 京东主榜
     jd_sales = fetch_jd(1, "jd_sales")
     jd_new = fetch_jd(2, "jd_new")
