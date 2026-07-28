@@ -157,11 +157,11 @@
     return '#8b97a7';
   }
 
-  // 书名标签：历史1 -> 历史喵1；西游1 -> 西游喵1；小剧场X版 -> 小剧场·X版
+  // 书名标签：历史1 -> 历史喵1；西游1 -> 西游喵1；小剧场X版 -> 一群喵小剧场1·X版
   function displayName(key){
     if(key.indexOf('小剧场') === 0){
       const v = key.slice(3);
-      return '小剧场' + (v ? '·' + v : '');
+      return '一群喵小剧场1' + (v ? '·' + v : '');
     }
     const m = key.match(/^(历史|西游)(\d+)(.*)$/);
     if(m){
