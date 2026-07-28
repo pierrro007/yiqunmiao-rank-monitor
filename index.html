@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>图书排名监控 · 当当 + 京东 · 折线图</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{ --bg:#0f1419; --panel:#1a212b; --line:#2a3340; --text:#e6edf3; --muted:#8b97a7; --accent:#ff4d4f; }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-text-size-adjust:100%;}
+  header{padding:20px 24px;border-bottom:1px solid var(--line);}
+  h1{margin:0;font-size:20px;}
+  .sub{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.6;}
+  .wrap{padding:20px 24px;max-width:1200px;margin:0 auto;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:20px;}
+  .card h2{margin:0 0 4px;font-size:15px;color:var(--text);font-weight:600;}
+  .card .hint{color:var(--muted);font-size:12px;margin:0 0 12px;}
+  .chart-box{position:relative;height:460px;}
+  .tbl-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;font-size:13px;min-width:600px;}
+  th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap;}
+  th{color:var(--muted);font-weight:600;}
+  .rank-top{color:#ff7a45;font-weight:700;}
+  .rank-mid{color:#ffd666;}
+  .rank-none{color:var(--muted);}
+  .foot{color:var(--muted);font-size:12px;line-height:1.7;padding:0 24px 40px;max-width:1200px;margin:0 auto;}
+  code{background:#222b36;padding:1px 6px;border-radius:5px;color:#9cdcfe;}
+  .badge{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11px;margin-left:8px;}
+  .badge-new{background:rgba(255,77,79,.15);color:#ff7875;}
+  .badge-best{background:rgba(82,196,26,.15);color:#95de64;}
+  .badge-jd{background:rgba(245,166,35,.15);color:#ffc53d;}
+  .badge-jd-new{background:rgba(250,173,20,.15);color:#ffd666;}
+  .fresh{color:var(--muted);font-size:12px;margin-top:6px;line-height:1.7;}
+  .fresh-badge{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11px;margin-left:4px;}
+  .fresh-badge.today{background:rgba(82,196,26,.15);color:#95de64;}
+  .fresh-badge.stale{background:rgba(255,77,79,.15);color:#ff7875;}
+
+  @media (max-width:640px){
+    header{padding:16px 16px 14px;}
+    h1{font-size:18px;}
+    .sub{font-size:12px;margin-top:4px;}
+    .wrap{padding:12px;}
+    .card{padding:14px;margin-bottom:14px;border-radius:10px;}
+    .card h2{font-size:14px;}
+    .card .hint{font-size:11px;}
+    .chart-box{height:340px;}
+    .foot{padding:0 16px 32px;font-size:11px;}
+    table{font-size:12px;min-width:520px;}
+    th,td{padding:6px 8px;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 图书排名监控</h1>
+  <div class="sub">
+    19 本在当当 + 京东的排行榜走势 · 多 SKU 拆分统计（同一书的不同版本各算一条线）·
+    云端自动探测，<b>仅当排名较上次发生变化时才更新历史</b>，不盲刷。
+  </div>
+  <div class="fresh" id="fresh">数据加载中…</div>
+</header>
+
+<div class="wrap">
+  <div class="card">
+    <h2>当当 · 新书热卖榜 <span class="badge badge-new">小剧场 + 历史1-16 + 西游1-2</span></h2>
+    <p class="hint">各书同榜（前 500）对比；小剧场特典版/普通版拆分统计。</p>
+    <div class="chart-box"><canvas id="chartNew"></canvas></div>
+  </div>
+
+  <div class="card">
+    <h2>当当 · 图书畅销榜 <span class="badge badge-best">历史1-16 + 西游1-2</span></h2>
+    <p class="hint">各卷同榜（前500）对比；若某卷含多 SKU（如特典版），会拆为多条线。</p>
+    <div class="chart-box"><canvas id="chartBest"></canvas></div>
+  </div>
+
+  <div class="card">
+    <h2>京东 · 图书销量榜 <span class="badge badge-jd">小剧场 + 历史1-16 + 西游1-2</span></h2>
+    <p class="hint">小剧场按 SKU 拆分（印签版 / 京东特典版）；其余卷同榜（京东主榜前 200）。</p>
+    <div class="chart-box"><canvas id="chartJDSales"></canvas></div>
+  </div>
+
+  <div class="card">
+    <h2>京东 · 新书热卖榜 <span class="badge badge-jd-new">小剧场 + 历史1-16 + 西游1-2</span></h2>
+    <p class="hint">小剧场按 SKU 拆分（印签版 / 京东特典版）；其余卷同榜（京东主榜前 200）。</p>
+    <div class="chart-box"><canvas id="chartJDNew"></canvas></div>
+  </div>
+
+  <div class="card">
+    <h2>京东子榜单分布 <span class="badge badge-jd">13 大分类 × 销量/新书</span></h2>
+    <p class="hint">京东图书榜下设分类子榜（各 100 名）。下表为最新一日在这些子榜中出现的一群喵相关书及排名；无出现的分类不列出。</p>
+    <div class="tbl-wrap">
+      <table id="tblSub">
+        <thead><tr><th>分类</th><th>榜单类型</th><th>发现的书（排名）</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>最新一日排名总表</h2>
+    <div class="tbl-wrap">
+      <table id="tbl">
+        <thead><tr><th>#</th><th>产品</th><th>当当畅销榜</th><th>当当新书榜</th><th>京东销量榜</th><th>京东新书榜</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="foot">
+  <p><b>阅读提示：</b></p>
+  <ul>
+    <li><b>四张图分开看</b>：当当新书热卖榜 / 当当图书畅销榜 / 京东图书销量榜 / 京东新书热卖榜。各榜口径不同，不可跨图比数字。</li>
+    <li><b>多 SKU / 套装拆分</b>：同一书的不同版本（印签版/京东特典版/特典版/普通版）以及套装（历史1-16套装、西游1-2套装、历史1-3礼盒）只要进了排行榜，都作为独立线统计。京东「未上榜」= 未进前 200；当当「未上榜」= 未进前 500。</li>
+    <li><b>京东子榜单</b>：除主榜外，额外监控京东 13 大分类子榜（小说文学/童书/学考/经管/励志与成功/人文社科/生活/青春文学/艺术/动漫/考试/进口原版/科技）× 销量/新书，各 100 名。这些子榜只展示「最新一日」分布，不画时间折线。</li>
+    <li><b>新鲜度判定</b>：网页以「最近一次发现排名变化的日期」为准。若今日探测这些书在所有榜单（含子榜）排名较昨日无任何变化，则判定为旧数据（榜单未刷新），不更新历史；一旦发现变化即写入并标注「今日已更新」。</li>
+  </ul>
+</div>
+
+<script>
+(async function(){
+  const isMobile = window.innerWidth <= 640;
+  let DATA;
+  try {
+    const r = await fetch('./rank-history.json', {cache:'no-store'});
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    DATA = await r.json();
+  } catch(e){
+    document.getElementById('fresh').textContent = '数据加载失败：' + e.message;
+    return;
+  }
+
+  const { meta, dates, boards } = DATA;
+  const series       = boards.dd_best  || {};
+  const seriesNew    = boards.dd_new   || {};
+  const seriesJDSales= boards.jd_sales || {};
+  const seriesJDNew  = boards.jd_new   || {};
+
+  function colorFor(name){
+    if(name.indexOf('小剧场') === 0){
+      if(name.indexOf('印签版') >= 0) return '#ff4d4f';
+      if(name.indexOf('京东特典版') >= 0) return '#ff9c9c';
+      return (name.indexOf('特典版') >= 0) ? '#ff4d4f' : '#ff9c9c';
+    }
+    if(name.indexOf('西游') === 0){
+      return name.indexOf('特典版') >= 0 ? '#389e0d' : '#52c41a';
+    }
+    const m = name.match(/历史(\d+)/);
+    if(m){ const n = +m[1]; return 'hsl(210,80%,' + (62 - (n-1)*1.6) + '%)'; }
+    return '#8b97a7';
+  }
+
+  // 书名标签：历史1 -> 历史喵1；西游1 -> 西游喵1；小剧场X版 -> 小剧场·X版
+  function displayName(key){
+    if(key.indexOf('小剧场') === 0){
+      const v = key.slice(3);
+      return '小剧场' + (v ? '·' + v : '');
+    }
+    const m = key.match(/^(历史|西游)(\d+)(.*)$/);
+    if(m){
+      const pre = m[1] === '历史' ? '历史喵' : '西游喵';
+      return pre + m[2] + (m[3] ? '·' + m[3] : '');
+    }
+    return key;
+  }
+
+  function makeChart(canvasId, nameList, src, maxY){
+    const datasets = nameList.map(function(name){
+      return {
+        label: displayName(name),
+        data: src[name] || [],
+        borderColor: colorFor(name),
+        backgroundColor: colorFor(name),
+        borderWidth: (name.indexOf('小剧场') === 0) ? 3 : 1.4,
+        pointRadius: isMobile ? 2 : 3,
+        pointHoverRadius: 5,
+        spanGaps: false,
+        tension: 0.25
+      };
+    });
+    new Chart(document.getElementById(canvasId).getContext('2d'), {
+      type: 'line',
+      data: { labels: dates, datasets: datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: {
+            labels: { color: '#c9d4e0', boxWidth: isMobile ? 8 : 12, font: { size: isMobile ? 9 : 11 } },
+            position: 'bottom'
+          },
+          tooltip: { callbacks: { label: function(c){
+            const v = c.parsed.y;
+            return c.dataset.label + '：' + (v == null ? '未上榜' : '第 ' + v + ' 名');
+          } } }
+        },
+        scales: {
+          y: {
+            reverse: true,
+            suggestedMin: 1,
+            suggestedMax: maxY,
+            title: { display: !isMobile, text: '排名（1 = 榜首，越往上越好）', color: '#8b97a7' },
+            ticks: { color: '#8b97a7', maxTicksLimit: isMobile ? 6 : 10 },
+            grid: { color: '#222b36' }
+          },
+          x: {
+            title: { display: !isMobile, text: '日期（仅在有变化时记录）', color: '#8b97a7' },
+            ticks: { color: '#8b97a7' },
+            grid: { color: '#1c2530' }
+          }
+        }
+      }
+    });
+  }
+
+  function hasData(src, name){
+    return (src[name] || []).some(function(v){ return v != null; });
+  }
+  const newNames = Object.keys(seriesNew).filter(function(n){ return hasData(seriesNew, n); });
+  const bestNames = Object.keys(series).filter(function(n){
+    return (n.indexOf('历史') === 0 || n.indexOf('西游') === 0) && hasData(series, n);
+  });
+  const jdSalesNames = Object.keys(seriesJDSales).filter(function(n){ return hasData(seriesJDSales, n); });
+  const jdNewNames = Object.keys(seriesJDNew).filter(function(n){ return hasData(seriesJDNew, n); });
+  makeChart('chartNew', newNames, seriesNew, 50);
+  makeChart('chartBest', bestNames, series, 500);
+  makeChart('chartJDSales', jdSalesNames, seriesJDSales, 20);
+  makeChart('chartJDNew', jdNewNames, seriesJDNew, 20);
+
+  // 新鲜度：基于「变化判定」——上次变化日 + 今日是否变化
+  function bjToday(){
+    return new Date().toLocaleDateString('zh-CN', {timeZone:'Asia/Shanghai', year:'numeric', month:'2-digit', day:'2-digit'}).replace(/\//g, '-');
+  }
+  const lastChange = meta.last_change_date || '（暂无）';
+  const changedToday = !!meta.changed_today;
+  const div = document.getElementById('fresh');
+  if(changedToday){
+    div.innerHTML = '✅ 今日榜单已更新（探测到排名变化）· 最近变化日：<b>' + lastChange + '</b> · 更新于 ' + (meta.updated_at||'—');
+  } else {
+    div.innerHTML = '⏸ 今日探测：这些书在所有榜单（含京东子榜）排名较昨日<b>无变化</b>，数据仍为 <b>' + lastChange + '</b>（榜单未刷新，未更新历史）· 最后探测 ' + (meta.last_probe_date||'—');
+  }
+
+  // 最新一日总表（按产品聚合：当当畅销 / 当当新书 / 京东销量榜 / 京东新书榜）
+  const last = dates.length - 1;
+  const tb = document.querySelector('#tbl tbody');
+
+  const productMap = {};
+  function addKey(src, board){
+    Object.keys(src).forEach(function(k){
+      const name = displayName(k);
+      if(!productMap[name]) productMap[name] = {name:name, keys:{}};
+      productMap[name].keys[board] = k;
+    });
+  }
+  addKey(series, 'dd');
+  addKey(seriesNew, 'ddNew');
+  addKey(seriesJDSales, 'jdSales');
+  addKey(seriesJDNew, 'jdNew');
+
+  const products = Object.values(productMap).sort(function(a,b){
+    function weight(name){
+      if(name.indexOf('小剧场') === 0) return 0;
+      const m = name.match(/^(历史|西游)喵(\d+)/);
+      if(!m) return 99;
+      return (m[1] === '历史' ? 100 : 200) + parseInt(m[2],10);
+    }
+    return weight(a.name) - weight(b.name);
+  });
+
+  function rankCell(val){
+    if(val == null) return '<td class="rank-none">未上榜</td>';
+    let cls = 'rank-none';
+    if(val <= 50) cls = 'rank-top';
+    else if(val <= 200) cls = 'rank-mid';
+    return '<td class="' + cls + '">第 ' + val + ' 名</td>';
+  }
+
+  products.forEach(function(p, i){
+    const ddKey = p.keys.dd;
+    const ddNewKey = p.keys.ddNew;
+    const salesKey = p.keys.jdSales;
+    const newKey = p.keys.jdNew;
+    const ddVal = ddKey ? (series[ddKey] && series[ddKey][last]) : null;
+    const ddNewVal = ddNewKey ? (seriesNew[ddNewKey] && seriesNew[ddNewKey][last]) : null;
+    const salesVal = salesKey ? (seriesJDSales[salesKey] && seriesJDSales[salesKey][last]) : null;
+    const newVal = newKey ? (seriesJDNew[newKey] && seriesJDNew[newKey][last]) : null;
+    const tr = document.createElement('tr');
+    tr.innerHTML = '<td>' + (i+1) + '</td><td>' + p.name + '</td>' +
+      rankCell(ddVal) + rankCell(ddNewVal) + rankCell(salesVal) + rankCell(newVal);
+    tb.appendChild(tr);
+  });
+
+  // 京东子榜单分布（最新一日）
+  const JD_SUBCATS = ["小说文学","童书","学考","经管","励志与成功","人文社科","生活","青春文学","艺术","动漫","考试","进口原版","科技"];
+  const subTbody = document.querySelector('#tblSub tbody');
+  let subRows = 0;
+  JD_SUBCATS.forEach(function(cat){
+    [['jd_sales_' + cat, '销量榜'], ['jd_new_' + cat, '新书热卖榜']].forEach(function(pair){
+      const src = boards[pair[0]] || {};
+      const found = [];
+      Object.keys(src).forEach(function(k){
+        const arr = src[k];
+        const v = arr && arr[last];
+        if(v != null) found.push({ name: displayName(k), rank: v });
+      });
+      if(found.length === 0) return;
+      found.sort(function(a, b){ return a.rank - b.rank; });
+      const chips = found.map(function(f){ return f.name + '：第' + f.rank + '名'; }).join('、');
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + cat + '</td><td>' + pair[1] + '</td><td>' + chips + '</td>';
+      subTbody.appendChild(tr);
+      subRows++;
+    });
+  });
+  if(subRows === 0){
+    const tr = document.createElement('tr');
+    tr.innerHTML = '<td colspan="3" class="rank-none">最新一日各子榜均未发现一群喵相关书</td>';
+    subTbody.appendChild(tr);
+  }
+})();
+</script>
+</body>
+</html>
