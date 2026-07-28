@@ -19,7 +19,7 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 JSON_PATH = os.path.join(BASE, "rank-history.json")
 LIVE_URL = os.environ.get(
     "LIVE_URL",
-    "https://3000-1eb612389fbf4238aa6286be6b6d35b3.e2b.ap-beijing.sandbox.cloudstudio.club/rank-history.json",
+    "https://raw.githubusercontent.com/pierrro007/yiqunmiao-rank-monitor/main/rank-history.json",
 )
 
 # 京东 13 大分类子榜（与 monitor_fetch.py / monitor_apply.py 保持一致）
