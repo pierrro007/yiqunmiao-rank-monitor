@@ -90,6 +90,7 @@ def load_history():
             },
             "dates": [],
             "boards": {b: {} for b in ALL_BOARDS},
+            "board_meta": {},
         }
     with open(JSON_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
@@ -106,9 +107,11 @@ def snapshot_from_input(inp):
 
 
 def diff_changed(prev_snap, new_snap, active):
-    """prev_snap / new_snap 都是 {board: {key: val}}。仅比对 active 榜。返回 (changed, detail_list)"""
+    """prev_snap / new_snap 都是 {board: {key: val}}。仅比对 active 榜。
+    返回 (changed, detail_list, changed_boards_set)"""
     changed = False
     detail = []
+    changed_boards = set()
     for b in active:
         prev_board = prev_snap.get(b, {})
         new_board = new_snap.get(b, {})
@@ -117,6 +120,7 @@ def diff_changed(prev_snap, new_snap, active):
             nv = new_board.get(k, None)
             if pv != nv:
                 changed = True
+                changed_boards.add(b)
                 detail.append(
                     "%s/%s: %s -> %s"
                     % (
@@ -126,7 +130,7 @@ def diff_changed(prev_snap, new_snap, active):
                         "未上榜" if nv is None else ("第%d名" % nv),
                     )
                 )
-    return changed, detail
+    return changed, detail, changed_boards
 
 
 def main():
@@ -162,11 +166,12 @@ def main():
                 for k in EXPECTED[b]
             }
 
-    changed, detail = diff_changed(prev_snap, new_snap, active)
+    changed, detail, changed_boards = diff_changed(prev_snap, new_snap, active)
     now = beijing_now()
     today = today_str()
 
     meta = hist.get("meta", {})
+    board_meta = hist.get("board_meta", {}) or {}
     is_new_day = not dates or dates[-1] != today
 
     if changed:
@@ -212,6 +217,11 @@ def main():
         hist["dates"] = dates
         hist["boards"] = boards
         hist["meta"] = meta
+        # 各榜最近更新时间：仅更新本轮真正发生变化的榜（北京时间）
+        now_str = now.strftime("%Y-%m-%d %H:%M")
+        for b in changed_boards:
+            board_meta.setdefault(b, {})["last_change"] = now_str
+        hist["board_meta"] = board_meta
         with open(JSON_PATH, "w", encoding="utf-8") as f:
             json.dump(hist, f, ensure_ascii=False, indent=2)
     else:
@@ -225,6 +235,7 @@ def main():
         "changed_today": meta.get("changed_today", False),
         "detail": detail,
         "dates_count": len(dates),
+        "board_meta": board_meta,
     }
     print(json.dumps(result, ensure_ascii=False))
     sys.exit(0)

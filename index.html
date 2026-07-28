@@ -132,6 +132,14 @@ if (typeof Chart === 'undefined') {
         <tbody></tbody>
       </table>
     </div>
+    <h3 class="sub-h">各榜最近更新时间（北京时间）</h3>
+    <p class="hint">每个榜单<b>最近一次排名发生变化</b>的时间。可用来观察各平台各榜的刷新规律（例如「当当畅销榜常在上午更新」）。从未发生过变化的榜显示「—」。该时间为全局最新值，不随上方日期切换而改变。</p>
+    <div class="tbl-wrap">
+      <table id="tblBoardMeta">
+        <thead><tr><th>分组</th><th>榜单</th><th>最近更新时间</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
 </div>
 
@@ -321,6 +329,7 @@ if (typeof Chart === 'undefined') {
   const tb = document.querySelector('#tbl tbody');
   const subTbody = document.querySelector('#tblSub tbody');
   const subTbodyDD = document.querySelector('#tblSubDD tbody');
+  const boardMetaTbody = document.querySelector('#tblBoardMeta tbody');
   const dayTabs = document.getElementById('dayTabs');
   const dayLabel = document.getElementById('dayLabel');
 
@@ -436,10 +445,54 @@ if (typeof Chart === 'undefined') {
     }
   }
 
+  function boardLabel(b){
+    const map = {
+      'dd_best': '当当·图书畅销榜',
+      'dd_new': '当当·新书热卖榜',
+      'jd_sales': '京东·图书销量榜',
+      'jd_new': '京东·新书热卖榜',
+    };
+    if(map[b]) return map[b];
+    let m = b.match(/^jd_(sales|new)_(.+)$/);
+    if(m) return '京东·' + m[2] + '·' + (m[1] === 'sales' ? '销量榜' : '新书热卖榜');
+    m = b.match(/^dd_(best|new)_(.+)$/);
+    if(m){
+      let cat = m[2].replace('动漫幽默', '动漫/幽默'); // 当当子分类键已去掉"/"，此处还原显示
+      return '当当·' + cat + '·' + (m[1] === 'best' ? '畅销榜' : '新书热卖榜');
+    }
+    return b;
+  }
+
+  function renderBoardMeta(){
+    boardMetaTbody.innerHTML = '';
+    const bm = DATA.board_meta || {};
+    const groups = [
+      ['主榜', ['dd_best','dd_new','jd_sales','jd_new'].filter(function(k){ return k in bm; })],
+      ['京东子榜', Object.keys(bm).filter(function(k){ return /^jd_(sales|new)_/.test(k); }).sort()],
+      ['当当子榜', Object.keys(bm).filter(function(k){ return /^dd_(best|new)_/.test(k); }).sort()],
+    ];
+    let any = false;
+    groups.forEach(function(g){
+      const grp = g[0], keys = g[1];
+      keys.forEach(function(b){
+        any = true;
+        const ts = (bm[b] && bm[b].last_change) || '';
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + grp + '</td><td>' + boardLabel(b) + '</td><td>' +
+          (ts ? ts : '<span class="rank-none">—</span>') + '</td>';
+        boardMetaTbody.appendChild(tr);
+      });
+    });
+    if(!any){
+      boardMetaTbody.innerHTML = '<tr><td colspan="3" class="rank-none">暂无各榜更新时间记录</td></tr>';
+    }
+  }
+
   function renderDay(){
     renderSummary(currentDay);
     renderSub(currentDay);
     renderSubDD(currentDay);
+    renderBoardMeta();
     const order = dates.length - currentDay; // 倒序第几天
     dayLabel.innerHTML = '查看日期：<b>' + dates[currentDay] + '</b>（共 ' + dates.length + ' 天记录，倒序第 ' + order + ' 天）';
   }

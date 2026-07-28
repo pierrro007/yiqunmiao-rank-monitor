@@ -16,6 +16,7 @@ monitor_apply.py 的回归测试。
 """
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -167,3 +168,24 @@ def test_empty_stdin_exits_cleanly(workdir):
     )
     assert r.returncode == 1
     assert "empty stdin" in r.stdout
+
+
+def test_board_meta_records_last_change(workdir):
+    """变化发生后，对应榜的 board_meta.last_change 应被记录；未变化的榜不应出现。"""
+    h0 = json.load(open(workdir / "rank-history.json", encoding="utf-8"))
+    inp = base_input(h0["boards"])
+    # 仅改动一个京东榜的某 key，制造确定变化
+    b0 = next(b for b in inp if b.startswith("jd_") and inp[b])
+    k0 = next(iter(inp[b0]))
+    inp[b0][k0] = (inp[b0][k0] if inp[b0][k0] is not None else 0) + 1
+    out, h1 = run_apply(workdir, inp)
+    assert out["changed"] is True
+    # 变化的榜被记录，且时间戳格式为 北京时间 YYYY-MM-DD HH:MM
+    assert b0 in h1["board_meta"], "变化榜未记录 last_change"
+    ts = h1["board_meta"][b0].get("last_change", "")
+    assert re.match(r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$", ts), "时间戳格式异常: " + ts
+    # 未变化的榜（同属 active）不应被写进 board_meta（除非种子原本就有）
+    seed_bm = h0.get("board_meta", {}) or {}
+    for b in inp:
+        if b != b0 and b not in seed_bm:
+            assert b not in h1["board_meta"], "未变化榜不应出现: " + b
