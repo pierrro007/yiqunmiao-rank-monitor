@@ -139,11 +139,12 @@ def jd_book_key(title):
     if m:
         return "西游" + m.group(1)
     if "小剧场" in title or "一群喵小剧场" in title:
-        if "京东特典版" in title:
+        # 「含特典版才算特典版」：普通版标题常不写版本字样，兜底为普通版
+        if "京东特典版" in title or "特典版" in title:
             return "小剧场京东特典版"
         if "印签" in title:
             return "小剧场印签版"
-        return "小剧场京东特典版"
+        return "小剧场普通版"
     return None
 
 

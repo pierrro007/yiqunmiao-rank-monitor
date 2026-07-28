@@ -34,7 +34,7 @@ HISTORY = ["历史%d" % i for i in range(1, 17)]
 XY = ["西游1", "西游2"]
 SETS = ["历史1-16套装", "西游1-2套装", "历史1-3套装"]
 DD_KEYS = ["小剧场特典版", "小剧场普通版"] + HISTORY + XY + SETS
-JD_KEYS = ["小剧场印签版", "小剧场京东特典版"] + HISTORY + XY + SETS
+JD_KEYS = ["小剧场印签版", "小剧场京东特典版", "小剧场普通版"] + HISTORY + XY + SETS
 
 JD_SUBCATS = [
     "小说文学", "童书", "学考", "经管", "励志与成功", "人文社科", "生活",
@@ -167,11 +167,11 @@ def main():
     today = today_str()
 
     meta = hist.get("meta", {})
-    meta["updated_at"] = now.strftime("%Y-%m-%d %H:%M")
-    meta["last_probe_date"] = today
-
     is_new_day = not dates or dates[-1] != today
+
     if changed:
+        meta["updated_at"] = now.strftime("%Y-%m-%d %H:%M")
+        meta["last_probe_date"] = today
         if is_new_day:
             dates.append(today)
         target_len = len(dates)
@@ -196,27 +196,27 @@ def main():
                     del arr[target_len:]
         meta["last_change_date"] = today
         meta["changed_today"] = True
+
+        # 累积合并商品链接：历史已有的保留，本次抓到的覆盖/新增
+        # 结构 {board: {key: url}}，即使商品暂时掉榜也不丢链接
+        hist_urls = hist.get("urls", {}) or {}
+        for b, kv in urls.items():
+            if not isinstance(kv, dict):
+                continue
+            dst = hist_urls.setdefault(b, {})
+            for k, u in kv.items():
+                if u:
+                    dst[k] = u
+        hist["urls"] = hist_urls
+
+        hist["dates"] = dates
+        hist["boards"] = boards
+        hist["meta"] = meta
+        with open(JSON_PATH, "w", encoding="utf-8") as f:
+            json.dump(hist, f, ensure_ascii=False, indent=2)
     else:
         meta["changed_today"] = False
-
-    hist["dates"] = dates
-    hist["boards"] = boards
-    hist["meta"] = meta
-
-    # 累积合并商品链接：历史已有的保留，本次抓到的覆盖/新增
-    # 结构 {board: {key: url}}，即使商品暂时掉榜也不丢链接
-    hist_urls = hist.get("urls", {}) or {}
-    for b, kv in urls.items():
-        if not isinstance(kv, dict):
-            continue
-        dst = hist_urls.setdefault(b, {})
-        for k, u in kv.items():
-            if u:
-                dst[k] = u
-    hist["urls"] = hist_urls
-
-    with open(JSON_PATH, "w", encoding="utf-8") as f:
-        json.dump(hist, f, ensure_ascii=False, indent=2)
+        # 无变化：不写文件、不更新时间戳，避免每日空提交污染 git 历史
 
     result = {
         "ok": True,

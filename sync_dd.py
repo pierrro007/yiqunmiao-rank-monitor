@@ -14,24 +14,45 @@ sync_dd.py —— 在中国境内环境定时采集「当当」榜单（含子�
 数据流：
   1) 拉取仓库最新 rank-history.json / product-map.json 到本地（基于云端最新版）
   2) FETCH_MODE=dd 运行 monitor_run.py（仅抓当当，变化判定+落库，京东部分 carry-forward 保留）
-  3) 用 Contents API 把更新后的两个文件回传（带 SHA，409 自动重试）
-  4) 运行飞书推送（有变化时；需 FEISHU_WEBHOOK 环境变量）
+  3) 仅当数据确实变化时才用 Contents API 回传（无变化跳过，避免空提交/空推送）
+  4) 运行飞书推送（仅当当当侧有变化时；需 FEISHU_WEBHOOK 环境变量/本地配置）
 
-环境变量：
-  GH_TOKEN         —— GitHub PAT（repo 权限），必填
-  FEISHU_WEBHOOK   —— 飞书机器人地址，选填（不填则跳过飞书推送）
+令牌读取（不再明文写在命令行/自动化里）：
+  优先级：环境变量 GH_TOKEN → 本地文件 ~/.config/yiqunmiao/token → 本地文件 <仓库>/.sync_token
+  （仓库内的 .sync_token 已被 .gitignore 忽略，不会进仓库）
 """
 import os
 import sys
 import json
 import base64
+import hashlib
 import subprocess
 
-TOKEN = os.environ.get("GH_TOKEN", "")
 REPO = "pierrro007/yiqunmiao-rank-monitor"
 BASE = os.path.dirname(os.path.abspath(__file__))
 RH = os.path.join(BASE, "rank-history.json")
 PM = os.path.join(BASE, "product-map.json")
+RESULT = os.path.join(BASE, "result.json")
+
+TOKEN = ""  # 在 main() 中由 load_token() 赋值
+
+
+def load_token():
+    # 1) 环境变量（最高优先，便于手动调试）
+    t = os.environ.get("GH_TOKEN", "")
+    if t:
+        return t
+    # 2) 本地私有文件（不进 git），依次尝试
+    for p in [
+        os.path.expanduser("~/.config/yiqunmiao/token"),
+        os.path.join(BASE, ".sync_token"),
+    ]:
+        if os.path.exists(p):
+            try:
+                return open(p, encoding="utf-8").read().strip()
+            except Exception:
+                pass
+    return ""
 
 
 def _curl(args):
@@ -64,6 +85,10 @@ def api_put(path, content_str, sha):
     return json.loads(out)
 
 
+def sha256_file(p):
+    return hashlib.sha256(open(p, "rb").read()).hexdigest()
+
+
 def download(path, local):
     meta = api_get(path)
     data = base64.b64decode(meta["content"]).decode("utf-8")
@@ -72,30 +97,61 @@ def download(path, local):
     return meta["sha"]
 
 
-def run_dd():
-    """拉取最新 → 仅抓当当并落库。返回 (sha_rh, sha_pm)。"""
+def pull():
+    """拉取仓库最新两份文件，返回 (sha_rh, sha_pm, 本地内容哈希_rh, 本地内容哈希_pm)。"""
     sha_rh = download("rank-history.json", RH)
     sha_pm = download("product-map.json", PM)
+    return sha_rh, sha_pm, sha256_file(RH), sha256_file(PM)
+
+
+def run_dd():
+    """仅抓当当并落库。monitor_run 的 stdout 写入 result.json 供飞书读取。"""
     env = dict(os.environ)
     env["FETCH_MODE"] = "dd"
     r = subprocess.run(
         [sys.executable, "monitor_run.py"], cwd=BASE, env=env,
         capture_output=True, text=True,
     )
+    if r.stdout.strip():
+        with open(RESULT, "w", encoding="utf-8") as f:
+            f.write(r.stdout)
     print("monitor_run:", r.stdout.strip()[:240])
     if r.returncode != 0:
         print("monitor_run 失败:", r.stderr[-300:])
-    return sha_rh, sha_pm
+
+
+def push_feishu():
+    """运行飞书推送（仅当 result.json 标记有变化时才会真正推送）。"""
+    try:
+        subprocess.run([sys.executable, "feishu_push.py"], cwd=BASE, env=os.environ)
+    except Exception as e:
+        print("飞书推送异常(忽略):", e)
 
 
 def main():
+    global TOKEN
+    TOKEN = load_token()
     if not TOKEN:
-        print("❌ 缺少 GH_TOKEN 环境变量"); sys.exit(1)
-    sha_rh, sha_pm = run_dd()
+        print("❌ 缺少 GitHub 令牌：请设置 GH_TOKEN 环境变量，或将令牌写入 ~/.config/yiqunmiao/token")
+        sys.exit(1)
+
+    sha_rh, sha_pm, orig_rh, orig_pm = pull()
+    run_dd()
+
+    # 检测数据是否真的变了（避免无意义的空回传/空提交）
+    cur_rh = sha256_file(RH)
+    cur_pm = sha256_file(PM)
+    if cur_rh == orig_rh and cur_pm == orig_pm:
+        print("✅ 当当数据无变化，跳过回传（无空提交）")
+        push_feishu()  # 仍跑飞书：changed=False 时会自动跳过推送
+        return
+
     for attempt in range(4):
         try:
-            api_put("rank-history.json", open(RH, encoding="utf-8").read(), sha_rh)
-            api_put("product-map.json", open(PM, encoding="utf-8").read(), sha_pm)
+            if cur_rh != orig_rh:
+                api_put("rank-history.json", open(RH, encoding="utf-8").read(), sha_rh)
+            if cur_pm != orig_pm:
+                api_put("product-map.json", open(PM, encoding="utf-8").read(), sha_pm)
             print("✅ 已回传当当数据到仓库")
             break
         except Exception as e:
@@ -103,14 +159,15 @@ def main():
             # curl 拿到 409 时 GitHub 返回 JSON，含 "message":"SHA does not match"
             if "409" in msg or "SHA does not match" in msg:
                 print("⚠️ SHA 过期（云端有新提交），重新拉取并应用后重试 (%d)…" % (attempt + 1))
-                sha_rh, sha_pm = run_dd()
+                sha_rh, sha_pm, orig_rh, orig_pm = pull()
+                run_dd()
+                cur_rh = sha256_file(RH)
+                cur_pm = sha256_file(PM)
                 continue
-            print("❌ 回传失败:", msg[:200]); break
-    # 飞书推送（有变化时；需 FEISHU_WEBHOOK 环境变量）
-    try:
-        subprocess.run([sys.executable, "feishu_push.py"], cwd=BASE, env=os.environ)
-    except Exception as e:
-        print("飞书推送异常(忽略):", e)
+            print("❌ 回传失败:", msg[:200])
+            break
+
+    push_feishu()
 
 
 if __name__ == "__main__":
