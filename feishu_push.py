@@ -36,6 +36,32 @@ def pretty_board(board):
     )
 
 
+def send(wh, text):
+    payload = {"msg_type": "text", "content": {"text": text}}
+    # 若开启了签名校验，补充 timestamp + sign
+    secret = os.environ.get("FEISHU_SECRET", "")
+    if secret:
+        timestamp = str(int(time.time()))
+        string_to_sign = "%s\n%s" % (timestamp, secret)
+        hmac_code = hmac.new(
+            secret.encode("utf-8"), string_to_sign.encode("utf-8"), hashlib.sha256
+        ).digest()
+        sign = base64.b64encode(hmac_code).decode("utf-8")
+        payload["timestamp"] = timestamp
+        payload["sign"] = sign
+
+    req = urllib.request.Request(
+        wh,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={"Content-Type": "application/json"},
+    )
+    try:
+        resp = urllib.request.urlopen(req, timeout=15).read().decode("utf-8")
+        print("飞书推送返回:", resp)
+    except Exception as e:
+        print("飞书推送失败:", e)
+
+
 def main():
     wh = os.environ.get("FEISHU_WEBHOOK", "")
     if not wh:
@@ -49,8 +75,22 @@ def main():
         print("result.json 解析失败，跳过推送:", e)
         return
 
-    if not data.get("changed"):
+    # 手动触发（workflow_dispatch）时：即使无变化也发一条测试消息，方便验证通路
+    is_manual = os.environ.get("GITHUB_EVENT_NAME", "") == "workflow_dispatch"
+
+    if not data.get("changed") and not is_manual:
         print("本次无变化，跳过飞书推送")
+        return
+
+    if not data.get("changed") and is_manual:
+        text = (
+            "【一群喵榜单·测试消息】\n"
+            "飞书推送通路正常 ✅（本次为手动触发，今日榜单无变化）\n"
+            "最近变化日：%s｜历史采样天数：%s\n"
+            "网页：https://pierrro007.github.io/yiqunmiao-rank-monitor/"
+            % (data.get("last_change_date", ""), data.get("dates_count", ""))
+        )
+        send(wh, text)
         return
 
     detail = data.get("detail") or []
@@ -76,30 +116,7 @@ def main():
         )
     )
 
-    payload = {"msg_type": "text", "content": {"text": text}}
-
-    # 若开启了签名校验，补充 timestamp + sign
-    secret = os.environ.get("FEISHU_SECRET", "")
-    if secret:
-        timestamp = str(int(time.time()))
-        string_to_sign = "%s\n%s" % (timestamp, secret)
-        hmac_code = hmac.new(
-            secret.encode("utf-8"), string_to_sign.encode("utf-8"), hashlib.sha256
-        ).digest()
-        sign = base64.b64encode(hmac_code).decode("utf-8")
-        payload["timestamp"] = timestamp
-        payload["sign"] = sign
-
-    req = urllib.request.Request(
-        wh,
-        data=json.dumps(payload).encode("utf-8"),
-        headers={"Content-Type": "application/json"},
-    )
-    try:
-        resp = urllib.request.urlopen(req, timeout=15).read().decode("utf-8")
-        print("飞书推送返回:", resp)
-    except Exception as e:
-        print("飞书推送失败:", e)
+    send(wh, text)
 
 
 if __name__ == "__main__":
