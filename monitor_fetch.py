@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-monitor_fetch.py —— 抓取「四主榜 + 京东 13 子榜」的 一群喵 排名，向 stdout 输出 JSON 快照。
+monitor_fetch.py —— 抓取「四主榜 + 京东 13 子榜 + 当当子榜」的 一群喵 排名，向 stdout 输出 JSON 快照。
 
 覆盖范围：
   - 当当：新书热卖榜(newhotsales) / 图书畅销榜(bestsellers)，各翻满 25 页 = 前 500 名。
           整页无目标书则提前结束（带一次重试，规避限流误判）。
+  - 当当子榜：动漫/幽默 等分类的畅销榜 + 新书热卖榜（DD_SUBCATS 定义，各翻 12 页 = 前 240 名）。
   - 京东主榜：图书销量榜(moduleType=1) / 新书热卖榜(moduleType=2)，各取前 200。
   - 京东子榜：13 大分类(小说文学/童书/学考/经管/励志与成功/人文社科/生活/青春文学/艺术/动漫/考试/进口原版/科技) × 销量/新书 = 26 榜，各 100 名。
 书名匹配同时识别「单册」与「套装/礼盒」(历史1-16套装、西游1-2套装、历史1-3礼盒)，各归一个 key。
@@ -38,6 +39,15 @@ JD_SUBCATS = [
     "小说文学", "童书", "学考", "经管", "励志与成功", "人文社科", "生活",
     "青春文学", "艺术", "动漫", "考试", "进口原版", "科技",
 ]
+
+# 当当图书榜下设的子分类（按分类号 code 区分）。
+# 用户确认需监控「动漫/幽默」分类的畅销榜 + 新书热卖榜。
+# 后续要加更多分类，直接在此列表追加 (显示名, 分类code) 即可。
+DD_SUBCATS = [
+    ("动漫/幽默", "01.09.00.00.00.00"),
+]
+# 当当子榜每榜最多翻页数（12 页 = 前 240 名，足够覆盖小众分类）
+DD_SUB_MAX_PAGES = 12
 
 # 稳定商品映射：platformID -> 内部 key（书名会变，商品 ID 不变，作为判重锚点）
 PID_MAP = {}
@@ -302,6 +312,19 @@ def main():
         25,
         "dd_best",
     )
+    # 当当子榜：动漫/幽默 等分类的畅销榜 + 新书热卖榜
+    for name, code in DD_SUBCATS:
+        sub_key = name.replace("/", "")
+        out["dd_best_" + sub_key] = fetch_dangdang(
+            "http://bang.dangdang.com/books/bestsellers/%s-24hours-0-0-1-{page}" % code,
+            DD_SUB_MAX_PAGES,
+            "dd_best_" + sub_key,
+        )
+        out["dd_new_" + sub_key] = fetch_dangdang(
+            "http://bang.dangdang.com/books/newhotsales/%s-24hours-0-0-1-{page}" % code,
+            DD_SUB_MAX_PAGES,
+            "dd_new_" + sub_key,
+        )
     # 京东主榜
     jd_sales = fetch_jd(1, "jd_sales")
     jd_new = fetch_jd(2, "jd_new")

@@ -41,6 +41,11 @@ JD_SUBCATS = [
     "青春文学", "艺术", "动漫", "考试", "进口原版", "科技",
 ]
 
+# 当当图书榜子分类（需与 monitor_fetch.py 的 DD_SUBCATS 保持一致）
+DD_SUBCATS = [
+    ("动漫/幽默", "01.09.00.00.00.00"),
+]
+
 # 主榜 schema
 EXPECTED = {
     "dd_new": DD_KEYS,
@@ -52,6 +57,11 @@ EXPECTED = {
 for cat in JD_SUBCATS:
     EXPECTED["jd_sales_" + cat] = JD_KEYS
     EXPECTED["jd_new_" + cat] = JD_KEYS
+# 当当子榜单（动漫/幽默 等分类的畅销榜 + 新书热卖榜）
+for name, code in DD_SUBCATS:
+    sub_key = name.replace("/", "")
+    EXPECTED["dd_best_" + sub_key] = DD_KEYS
+    EXPECTED["dd_new_" + sub_key] = DD_KEYS
 
 BOARDS = list(EXPECTED.keys())
 

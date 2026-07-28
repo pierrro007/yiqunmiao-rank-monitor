@@ -105,7 +105,7 @@ if (typeof Chart === 'undefined') {
 
   <div class="card">
     <h2>每日留底 · 按天倒序浏览 <span class="badge badge-jd">点击日期查看当天全榜明细</span></h2>
-    <p class="hint">下列为「留底数据」：选定某天后，展示当天在四主榜 + 京东13子榜的一群喵相关书完整排名。默认显示最新一天；点击其他日期可回溯历史（日期由新到旧排列）。</p>
+    <p class="hint">下列为「留底数据」：选定某天后，展示当天在四主榜 + 京东13子榜 + 当当子榜的一群喵相关书完整排名。默认显示最新一天；点击其他日期可回溯历史（日期由新到旧排列）。</p>
     <div id="dayTabs" class="day-tabs"></div>
     <div id="dayLabel" class="fresh"></div>
     <h3 class="sub-h">四主榜总表</h3>
@@ -122,6 +122,13 @@ if (typeof Chart === 'undefined') {
         <tbody></tbody>
       </table>
     </div>
+    <h3 class="sub-h">当当子榜单分布</h3>
+    <div class="tbl-wrap">
+      <table id="tblSubDD">
+        <thead><tr><th>分类</th><th>榜单类型</th><th>发现的书（排名）</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
 </div>
 
@@ -130,7 +137,7 @@ if (typeof Chart === 'undefined') {
   <ul>
     <li><b>四张图分开看</b>：当当新书热卖榜 / 当当图书畅销榜 / 京东图书销量榜 / 京东新书热卖榜。各榜口径不同，不可跨图比数字。</li>
     <li><b>多 SKU / 套装拆分</b>：同一书的不同版本（印签版/京东特典版/特典版/普通版）以及套装（历史1-16套装、西游1-2套装、历史1-3礼盒）只要进了排行榜，都作为独立线统计。京东「未上榜」= 未进前 200；当当「未上榜」= 未进前 500。</li>
-    <li><b>京东子榜单</b>：除主榜外，额外监控京东 13 大分类子榜（小说文学/童书/学考/经管/励志与成功/人文社科/生活/青春文学/艺术/动漫/考试/进口原版/科技）× 销量/新书，各 100 名。这些子榜可在「每日留底」卡片中按天浏览各日分布，不画时间折线。</li>
+    <li><b>京东 + 当当子榜单</b>：除主榜外，额外监控京东 13 大分类子榜（小说文学/童书/学考/经管/励志与成功/人文社科/生活/青春文学/艺术/动漫/考试/进口原版/科技）× 销量/新书，各 100 名；以及当当子分类榜（如 动漫/幽默 的畅销榜 + 新书热卖榜，各前 240 名）。这些子榜可在「每日留底」卡片中按天浏览各日分布，不画时间折线；书名可点击跳转对应平台商品页。</li>
     <li><b>新鲜度判定</b>：网页以「最近一次发现排名变化的日期」为准。若今日探测这些书在所有榜单（含子榜）排名较昨日无任何变化，则判定为旧数据（榜单未刷新），不更新历史；一旦发现变化即写入并标注「今日已更新」。</li>
   </ul>
 </div>
@@ -266,11 +273,13 @@ if (typeof Chart === 'undefined') {
   if(changedToday){
     div.innerHTML = '✅ 今日榜单已更新（探测到排名变化）· 最近变化日：<b>' + lastChange + '</b> · 更新于 ' + (meta.updated_at||'—');
   } else {
-    div.innerHTML = '⏸ 今日探测：这些书在所有榜单（含京东子榜）排名较昨日<b>无变化</b>，数据仍为 <b>' + lastChange + '</b>（榜单未刷新，未更新历史）· 最后探测 ' + (meta.last_probe_date||'—');
+    div.innerHTML = '⏸ 今日探测：这些书在所有榜单（含京东子榜与当当子榜）排名较昨日<b>无变化</b>，数据仍为 <b>' + lastChange + '</b>（榜单未刷新，未更新历史）· 最后探测 ' + (meta.last_probe_date||'—');
   }
 
   // ===== 每日留底（按天倒序浏览）=====
   const JD_SUBCATS = ["小说文学","童书","学考","经管","励志与成功","人文社科","生活","青春文学","艺术","动漫","考试","进口原版","科技"];
+  // 当当子分类：[显示名, 分类board键]（显示名含"/"时，board键去掉"/"）
+  const DD_SUBCATS = [["动漫/幽默","动漫幽默"]];
 
   // 产品聚合（仅依赖 key 集合，与日期无关，构建一次即可）
   const productMap = {};
@@ -306,6 +315,7 @@ if (typeof Chart === 'undefined') {
 
   const tb = document.querySelector('#tbl tbody');
   const subTbody = document.querySelector('#tblSub tbody');
+  const subTbodyDD = document.querySelector('#tblSubDD tbody');
   const dayTabs = document.getElementById('dayTabs');
   const dayLabel = document.getElementById('dayLabel');
 
@@ -369,6 +379,41 @@ if (typeof Chart === 'undefined') {
     }
   }
 
+  function renderSubDD(dayIdx){
+    subTbodyDD.innerHTML = '';
+    let subRows = 0;
+    DD_SUBCATS.forEach(function(pair){
+      const disp = pair[0], key = pair[1];
+      [['dd_best_' + key, '畅销榜'], ['dd_new_' + key, '新书热卖榜']].forEach(function(p){
+        const src = boards[p[0]] || {};
+        const found = [];
+        Object.keys(src).forEach(function(k){
+          const arr = src[k];
+          const v = arr && arr[dayIdx];
+          if(v != null) found.push({ name: displayName(k), rank: v,
+            url: urlFor([p[0], 'dd_best', 'dd_new'], k) });
+        });
+        if(found.length === 0) return;
+        found.sort(function(a, b){ return a.rank - b.rank; });
+        const chips = found.map(function(f){
+          const label = f.url
+            ? '<a class="bkname" href="' + f.url + '" target="_blank" rel="noopener">' + f.name + '</a>'
+            : f.name;
+          return label + '：第' + f.rank + '名';
+        }).join('、');
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + disp + '</td><td>' + p[1] + '</td><td>' + chips + '</td>';
+        subTbodyDD.appendChild(tr);
+        subRows++;
+      });
+    });
+    if(subRows === 0){
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td colspan="3" class="rank-none">该日当当各子榜均未发现一群喵相关书</td>';
+      subTbodyDD.appendChild(tr);
+    }
+  }
+
   let currentDay = dates.length - 1;
 
   function buildTabs(){
@@ -391,6 +436,7 @@ if (typeof Chart === 'undefined') {
   function renderDay(){
     renderSummary(currentDay);
     renderSub(currentDay);
+    renderSubDD(currentDay);
     const order = dates.length - currentDay; // 倒序第几天
     dayLabel.innerHTML = '查看日期：<b>' + dates[currentDay] + '</b>（共 ' + dates.length + ' 天记录，倒序第 ' + order + ' 天）';
   }
