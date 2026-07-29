@@ -1,107 +1,131 @@
 {
   "meta": {
-    "updated_at": "2026-07-28 23:21",
-    "last_change_date": "2026-07-28",
-    "last_probe_date": "2026-07-28",
+    "updated_at": "2026-07-29 13:23",
+    "last_change_date": "2026-07-29",
+    "last_probe_date": "2026-07-29",
     "changed_today": true,
     "dd_fetch": "",
     "jd_fetch": ""
   },
   "dates": [
     "2026-07-27",
-    "2026-07-28"
+    "2026-07-28",
+    "2026-07-29"
   ],
   "boards": {
     "dd_new": {
       "小剧场特典版": [
         1,
+        2,
         2
       ],
       "小剧场普通版": [
         null,
+        18,
         18
       ],
       "历史1": [
+        null,
         null,
         null
       ],
       "历史2": [
         null,
+        null,
         null
       ],
       "历史3": [
+        null,
         null,
         null
       ],
       "历史4": [
         null,
+        null,
         null
       ],
       "历史5": [
+        null,
         null,
         null
       ],
       "历史6": [
         null,
+        null,
         null
       ],
       "历史7": [
+        null,
         null,
         null
       ],
       "历史8": [
         null,
+        null,
         null
       ],
       "历史9": [
+        null,
         null,
         null
       ],
       "历史10": [
         null,
+        null,
         null
       ],
       "历史11": [
+        null,
         null,
         null
       ],
       "历史12": [
         null,
+        null,
         null
       ],
       "历史13": [
+        null,
         null,
         null
       ],
       "历史14": [
         null,
+        null,
         null
       ],
       "历史15": [
+        null,
         null,
         null
       ],
       "历史16": [
         null,
+        null,
         null
       ],
       "西游1": [
+        null,
         null,
         null
       ],
       "西游2": [
         null,
+        null,
         null
       ],
       "历史1-16套装": [
+        null,
         null,
         null
       ],
       "西游1-2套装": [
         null,
+        null,
         null
       ],
       "历史1-3套装": [
+        null,
         null,
         null
       ]
@@ -109,93 +133,116 @@
     "dd_best": {
       "小剧场特典版": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ],
       "历史1": [
         439,
+        352,
         352
       ],
       "历史2": [
         null,
+        490,
         490
       ],
       "历史3": [
+        null,
         null,
         null
       ],
       "历史4": [
         null,
+        473,
         473
       ],
       "历史5": [
+        null,
         null,
         null
       ],
       "历史6": [
         null,
+        null,
         null
       ],
       "历史7": [
+        null,
         null,
         null
       ],
       "历史8": [
         null,
+        null,
         null
       ],
       "历史9": [
+        null,
         null,
         null
       ],
       "历史10": [
         null,
+        null,
         null
       ],
       "历史11": [
+        null,
         null,
         null
       ],
       "历史12": [
         null,
+        null,
         null
       ],
       "历史13": [
         438,
+        null,
         null
       ],
       "历史14": [
         431,
+        null,
         null
       ],
       "历史15": [
         327,
+        null,
         null
       ],
       "历史16": [
         130,
+        195,
         195
       ],
       "西游1": [
         201,
+        161,
         161
       ],
       "西游2": [
         65,
+        87,
         87
       ],
       "历史1-16套装": [
+        null,
         null,
         null
       ],
       "西游1-2套装": [
         null,
+        null,
         null
       ],
       "历史1-3套装": [
+        null,
         null,
         null
       ]
@@ -203,97 +250,121 @@
     "jd_sales": {
       "小剧场印签版": [
         1,
-        15
+        15,
+        9
       ],
       "小剧场京东特典版": [
         10,
+        null,
         null
       ],
       "历史1": [
+        null,
         null,
         null
       ],
       "历史2": [
         null,
+        null,
         null
       ],
       "历史3": [
+        null,
         null,
         null
       ],
       "历史4": [
         null,
+        null,
         null
       ],
       "历史5": [
+        null,
         null,
         null
       ],
       "历史6": [
         null,
+        null,
         null
       ],
       "历史7": [
+        null,
         null,
         null
       ],
       "历史8": [
         null,
+        null,
         null
       ],
       "历史9": [
+        null,
         null,
         null
       ],
       "历史10": [
         null,
+        null,
         null
       ],
       "历史11": [
+        null,
         null,
         null
       ],
       "历史12": [
         null,
+        null,
         null
       ],
       "历史13": [
+        null,
         null,
         null
       ],
       "历史14": [
         null,
+        null,
         null
       ],
       "历史15": [
+        null,
         null,
         null
       ],
       "历史16": [
         null,
+        null,
         null
       ],
       "西游1": [
+        null,
         null,
         null
       ],
       "西游2": [
         null,
+        null,
         null
       ],
       "历史1-16套装": [
+        null,
         null,
         null
       ],
       "西游1-2套装": [
         null,
+        null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -301,97 +372,121 @@
     "jd_new": {
       "小剧场印签版": [
         1,
-        7
+        7,
+        6
       ],
       "小剧场京东特典版": [
         7,
-        56
+        56,
+        66
       ],
       "历史1": [
+        null,
         null,
         null
       ],
       "历史2": [
         null,
+        null,
         null
       ],
       "历史3": [
+        null,
         null,
         null
       ],
       "历史4": [
         null,
+        null,
         null
       ],
       "历史5": [
+        null,
         null,
         null
       ],
       "历史6": [
         null,
+        null,
         null
       ],
       "历史7": [
+        null,
         null,
         null
       ],
       "历史8": [
         null,
+        null,
         null
       ],
       "历史9": [
+        null,
         null,
         null
       ],
       "历史10": [
         null,
+        null,
         null
       ],
       "历史11": [
+        null,
         null,
         null
       ],
       "历史12": [
         null,
+        null,
         null
       ],
       "历史13": [
+        null,
         null,
         null
       ],
       "历史14": [
         null,
+        null,
         null
       ],
       "历史15": [
+        null,
         null,
         null
       ],
       "历史16": [
         null,
+        null,
         null
       ],
       "西游1": [
+        null,
         null,
         null
       ],
       "西游2": [
         null,
+        null,
         null
       ],
       "历史1-16套装": [
+        null,
         null,
         null
       ],
       "西游1-2套装": [
         null,
+        null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -399,97 +494,121 @@
     "jd_sales_小说文学": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         48,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
         86,
+        null,
         null
       ],
       "历史15": [
         52,
+        null,
         null
       ],
       "历史16": [
         33,
+        null,
         null
       ],
       "西游1": [
         16,
+        null,
         null
       ],
       "西游2": [
         20,
+        null,
         null
       ],
       "历史1-16套装": [
         6,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         57,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -497,97 +616,121 @@
     "jd_new_小说文学": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -595,97 +738,121 @@
     "jd_sales_童书": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -693,97 +860,121 @@
     "jd_new_童书": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
         40,
-        45
+        45,
+        33
       ],
       "历史1": [
+        null,
         null,
         null
       ],
       "历史2": [
         null,
+        null,
         null
       ],
       "历史3": [
+        null,
         null,
         null
       ],
       "历史4": [
         null,
+        null,
         null
       ],
       "历史5": [
+        null,
         null,
         null
       ],
       "历史6": [
         null,
+        null,
         null
       ],
       "历史7": [
+        null,
         null,
         null
       ],
       "历史8": [
         null,
+        null,
         null
       ],
       "历史9": [
+        null,
         null,
         null
       ],
       "历史10": [
         null,
+        null,
         null
       ],
       "历史11": [
+        null,
         null,
         null
       ],
       "历史12": [
         null,
+        null,
         null
       ],
       "历史13": [
+        null,
         null,
         null
       ],
       "历史14": [
         null,
+        null,
         null
       ],
       "历史15": [
+        null,
         null,
         null
       ],
       "历史16": [
         null,
+        null,
         null
       ],
       "西游1": [
+        null,
         null,
         null
       ],
       "西游2": [
         null,
+        null,
         null
       ],
       "历史1-16套装": [
+        null,
         null,
         null
       ],
       "西游1-2套装": [
         null,
+        null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -791,97 +982,121 @@
     "jd_sales_学考": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -889,97 +1104,121 @@
     "jd_new_学考": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -987,97 +1226,121 @@
     "jd_sales_经管": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -1085,97 +1348,121 @@
     "jd_new_经管": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -1183,97 +1470,121 @@
     "jd_sales_励志与成功": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         61,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         57,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -1281,97 +1592,121 @@
     "jd_new_励志与成功": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -1379,97 +1714,121 @@
     "jd_sales_人文社科": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -1477,97 +1836,121 @@
     "jd_new_人文社科": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -1575,97 +1958,121 @@
     "jd_sales_生活": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -1673,97 +2080,121 @@
     "jd_new_生活": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -1771,195 +2202,243 @@
     "jd_sales_青春文学": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
         null,
-        null
+        null,
+        65
       ]
     },
     "jd_new_青春文学": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -1967,97 +2446,121 @@
     "jd_sales_艺术": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -2065,97 +2568,121 @@
     "jd_new_艺术": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -2163,97 +2690,121 @@
     "jd_sales_动漫": {
       "小剧场印签版": [
         1,
+        1,
         1
       ],
       "小剧场京东特典版": [
         2,
-        6
+        6,
+        5
       ],
       "历史1": [
         7,
+        9,
         9
       ],
       "历史2": [
         24,
-        32
+        32,
+        23
       ],
       "历史3": [
         32,
-        25
+        25,
+        21
       ],
       "历史4": [
         33,
-        39
+        39,
+        24
       ],
       "历史5": [
         23,
-        26
+        26,
+        28
       ],
       "历史6": [
         26,
-        21
+        21,
+        31
       ],
       "历史7": [
         27,
-        14
+        14,
+        42
       ],
       "历史8": [
         31,
-        28
+        28,
+        33
       ],
       "历史9": [
         21,
-        34
+        34,
+        56
       ],
       "历史10": [
         29,
-        46
+        46,
+        35
       ],
       "历史11": [
         34,
-        23
+        23,
+        27
       ],
       "历史12": [
         30,
-        24
+        24,
+        32
       ],
       "历史13": [
+        17,
         17,
         17
       ],
       "历史14": [
         8,
-        20
+        20,
+        14
       ],
       "历史15": [
         6,
-        13
+        13,
+        3
       ],
       "历史16": [
         3,
-        8
+        8,
+        4
       ],
       "西游1": [
         5,
-        5
+        5,
+        7
       ],
       "西游2": [
         4,
-        4
+        4,
+        6
       ],
       "历史1-16套装": [
         15,
-        7
+        7,
+        8
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         28,
-        38
+        38,
+        43
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -2261,97 +2812,121 @@
     "jd_new_动漫": {
       "小剧场印签版": [
         1,
+        1,
         1
       ],
       "小剧场京东特典版": [
         2,
-        2
+        2,
+        3
       ],
       "历史1": [
+        null,
         null,
         null
       ],
       "历史2": [
         null,
+        null,
         null
       ],
       "历史3": [
+        null,
         null,
         null
       ],
       "历史4": [
         null,
+        null,
         null
       ],
       "历史5": [
+        null,
         null,
         null
       ],
       "历史6": [
         null,
+        null,
         null
       ],
       "历史7": [
+        null,
         null,
         null
       ],
       "历史8": [
         null,
+        null,
         null
       ],
       "历史9": [
+        null,
         null,
         null
       ],
       "历史10": [
         null,
+        null,
         null
       ],
       "历史11": [
+        null,
         null,
         null
       ],
       "历史12": [
         null,
+        null,
         null
       ],
       "历史13": [
+        null,
         null,
         null
       ],
       "历史14": [
         null,
+        null,
         null
       ],
       "历史15": [
+        null,
         null,
         null
       ],
       "历史16": [
         null,
+        null,
         null
       ],
       "西游1": [
         null,
-        57
+        57,
+        null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -2359,97 +2934,121 @@
     "jd_sales_考试": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -2457,97 +3056,121 @@
     "jd_new_考试": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -2555,97 +3178,121 @@
     "jd_sales_进口原版": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -2653,97 +3300,121 @@
     "jd_new_进口原版": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -2751,97 +3422,121 @@
     "jd_sales_科技": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -2849,97 +3544,121 @@
     "jd_new_科技": {
       "小剧场印签版": [
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null
       ],
       "历史3": [
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null
       ],
       "历史5": [
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null
       ],
       "历史7": [
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null
       ],
       "历史9": [
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null
       ],
       "历史11": [
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null
       ],
       "历史13": [
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null
       ],
       "历史15": [
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null
       ],
       "西游1": [
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null
       ],
       "历史1-16套装": [
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null
       ],
       "历史1-3套装": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ]
@@ -2947,187 +3666,233 @@
     "dd_best_动漫幽默": {
       "小剧场特典版": [
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null
       ],
       "历史1": [
         null,
+        8,
         8
       ],
       "历史2": [
         null,
+        12,
         12
       ],
       "历史3": [
         null,
+        14,
         14
       ],
       "历史4": [
         null,
+        11,
         11
       ],
       "历史5": [
         null,
+        15,
         15
       ],
       "历史6": [
         null,
+        21,
         21
       ],
       "历史7": [
         null,
+        38,
         38
       ],
       "历史8": [
         null,
+        32,
         32
       ],
       "历史9": [
         null,
+        39,
         39
       ],
       "历史10": [
         null,
+        50,
         50
       ],
       "历史11": [
         null,
+        31,
         31
       ],
       "历史12": [
         null,
+        47,
         47
       ],
       "历史13": [
         null,
+        25,
         25
       ],
       "历史14": [
         null,
+        18,
         18
       ],
       "历史15": [
         null,
+        13,
         13
       ],
       "历史16": [
         null,
+        3,
         3
       ],
       "西游1": [
         null,
+        2,
         2
       ],
       "西游2": [
         null,
+        1,
         1
       ],
       "历史1-16套装": [
+        null,
         null,
         null
       ],
       "西游1-2套装": [
         null,
+        null,
         null
       ],
       "历史1-3套装": [
         null,
+        99,
         99
       ]
     },
     "dd_new_动漫幽默": {
       "小剧场特典版": [
         null,
+        1,
         1
       ],
       "小剧场普通版": [
         null,
+        4,
         4
       ],
       "历史1": [
+        null,
         null,
         null
       ],
       "历史2": [
         null,
+        null,
         null
       ],
       "历史3": [
+        null,
         null,
         null
       ],
       "历史4": [
         null,
+        null,
         null
       ],
       "历史5": [
+        null,
         null,
         null
       ],
       "历史6": [
         null,
+        null,
         null
       ],
       "历史7": [
+        null,
         null,
         null
       ],
       "历史8": [
         null,
+        null,
         null
       ],
       "历史9": [
+        null,
         null,
         null
       ],
       "历史10": [
         null,
+        null,
         null
       ],
       "历史11": [
+        null,
         null,
         null
       ],
       "历史12": [
         null,
+        null,
         null
       ],
       "历史13": [
+        null,
         null,
         null
       ],
       "历史14": [
         null,
+        null,
         null
       ],
       "历史15": [
+        null,
         null,
         null
       ],
       "历史16": [
         null,
+        null,
         null
       ],
       "西游1": [
+        null,
         null,
         null
       ],
       "西游2": [
         null,
+        null,
         null
       ],
       "历史1-16套装": [
+        null,
         null,
         null
       ],
       "西游1-2套装": [
         null,
+        null,
         null
       ],
       "历史1-3套装": [
+        null,
         null,
         null
       ]
@@ -3190,9 +3955,10 @@
       "历史8": "https://item.jd.com/13264530.html",
       "历史2": "https://item.jd.com/14003396.html",
       "历史9": "https://item.jd.com/13504406.html",
-      "历史1-3套装": "https://item.jd.com/14541811.html",
+      "历史1-3套装": "https://item.jd.com/14407673.html",
       "历史4": "https://item.jd.com/12716766.html",
-      "历史10": "https://item.jd.com/13136339.html"
+      "历史10": "https://item.jd.com/13136339.html",
+      "历史01": "https://item.jd.com/14305847.html"
     },
     "jd_new_动漫": {
       "小剧场印签版": "https://item.jd.com/14752327.html",
@@ -3224,6 +3990,9 @@
     "dd_new_动漫幽默": {
       "小剧场特典版": "https://product.dangdang.com/30081621.html",
       "小剧场普通版": "https://product.dangdang.com/30081745.html"
+    },
+    "jd_sales_青春文学": {
+      "小剧场普通版": "https://item.jd.com/13574744.html"
     }
   },
   "board_meta": {
@@ -3232,6 +4001,24 @@
     },
     "jd_sales_小说文学": {
       "last_change": "2026-07-28 23:21"
+    },
+    "jd_new": {
+      "last_change": "2026-07-29 13:23"
+    },
+    "jd_sales_动漫": {
+      "last_change": "2026-07-29 13:23"
+    },
+    "jd_sales_青春文学": {
+      "last_change": "2026-07-29 13:23"
+    },
+    "jd_sales": {
+      "last_change": "2026-07-29 13:23"
+    },
+    "jd_new_童书": {
+      "last_change": "2026-07-29 13:23"
+    },
+    "jd_new_动漫": {
+      "last_change": "2026-07-29 13:23"
     }
   }
 }
