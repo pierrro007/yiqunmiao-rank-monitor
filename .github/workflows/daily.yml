@@ -24,9 +24,9 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 运行监控（仅京东：美国服务器可正常抓取京东；当当子分类页需中国境内环境抓取）
+      - name: 运行监控（京东 + 当当主榜：美国服务器可正常抓取；当当子榜因地域反爬需中国境内本机抓取）
         env:
-          FETCH_MODE: jd
+          FETCH_MODE: jd_ddmain
         run: python3 monitor_run.py | tee result.json
 
       - name: 提交并推送变化
@@ -42,6 +42,8 @@ jobs:
             echo "今日数据无变化，跳过提交"
           else
             git commit -m "chore: 每日排行榜更新 $(TZ=Asia/Shanghai date +%F)"
+            # 合入本机 dd_sub 可能的并发改动（避免双 writer 覆盖冲突）
+            git pull --rebase origin main || true
             git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }}.git HEAD:main
           fi
 

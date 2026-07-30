@@ -302,14 +302,23 @@ def fetch_jd_sub(module_type, category, board_name, page_size=100):
 
 def main():
     load_map()
-    # FETCH_MODE: all(默认) / jd(仅京东) / dd(仅当当)
-    # 当当子分类页从美国 IP 抓不到（地域反爬），故当当相关抓取交由「中国境内」环境跑(dd 模式)，
-    # 京东主榜+子榜从 GitHub 美国服务器跑(jd 模式)即可。两种模式输出合一、互补落库。
+    # FETCH_MODE 取值：
+    #   all       —— 京东 + 当当主榜 + 当当子榜（本地全量调试用）
+    #   jd        —— 仅京东（旧云端模式，保留兼容）
+    #   dd        —— 仅当当（主榜 + 子榜，旧本机全量模式，保留兼容）
+    #   jd_ddmain —— 京东 + 当当【主榜】(dd_best/dd_new)。用于 GitHub Actions 云端：
+    #               美国服务器能抓当当主榜(01.00)，子榜(动漫/幽默)因地域反爬抓不到，
+    #               交由本机 dd_sub 模式负责。
+    #   dd_sub    —— 仅当当【子榜】(动漫/幽默 等分类)。用于中国境内本机，避开美国服务器地域反爬。
+    # 拆分原则：每个榜只归一个 writer，避免云端与本机两个 writer 互相覆盖同一份 rank-history.json。
     mode = os.environ.get("FETCH_MODE", "all").lower()
+    DD_MAIN_MODES = ("all", "dd", "jd_ddmain", "dd_main")
+    DD_SUB_MODES = ("all", "dd", "dd_sub")
+    JD_MODES = ("all", "jd", "jd_ddmain")
     out = {}
 
-    if mode in ("all", "dd"):
-        # 当当子榜优先抓取：避免同一 IP 连续请求被当当反爬限流（主榜放后面）
+    if mode in DD_SUB_MODES:
+        # 当当子榜优先抓取：避免同一 IP 连续请求被当当反爬限流
         for name, code in DD_SUBCATS:
             sub_key = name.replace("/", "")
             out["dd_best_" + sub_key] = fetch_dangdang(
@@ -322,6 +331,8 @@ def main():
                 DD_SUB_MAX_PAGES,
                 "dd_new_" + sub_key,
             )
+
+    if mode in DD_MAIN_MODES:
         # 当当：两榜各翻满前 500
         out["dd_new"] = fetch_dangdang(
             "http://bang.dangdang.com/books/newhotsales/01.00.00.00.00.00-24hours-0-0-1-{page}",
@@ -334,7 +345,7 @@ def main():
             "dd_best",
         )
 
-    if mode in ("all", "jd"):
+    if mode in JD_MODES:
         # 京东主榜
         out["jd_sales"] = fetch_jd(1, "jd_sales")
         out["jd_new"] = fetch_jd(2, "jd_new")

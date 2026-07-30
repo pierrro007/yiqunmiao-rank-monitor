@@ -105,9 +105,9 @@ def pull():
 
 
 def run_dd():
-    """仅抓当当并落库。monitor_run 的 stdout 写入 result.json 供飞书读取。"""
+    """仅抓当当子榜并落库。monitor_run 的 stdout 写入 result.json 供飞书读取。"""
     env = dict(os.environ)
-    env["FETCH_MODE"] = "dd"
+    env["FETCH_MODE"] = "dd_sub"
     r = subprocess.run(
         [sys.executable, "monitor_run.py"], cwd=BASE, env=env,
         capture_output=True, text=True,
