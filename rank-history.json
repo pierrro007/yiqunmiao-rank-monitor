@@ -1,8 +1,8 @@
 {
   "meta": {
-    "updated_at": "2026-07-30 22:04",
-    "last_change_date": "2026-07-30",
-    "last_probe_date": "2026-07-30",
+    "updated_at": "2026-07-31 07:11",
+    "last_change_date": "2026-07-31",
+    "last_probe_date": "2026-07-31",
     "changed_today": true,
     "dd_fetch": "",
     "jd_fetch": ""
@@ -11,7 +11,8 @@
     "2026-07-27",
     "2026-07-28",
     "2026-07-29",
-    "2026-07-30"
+    "2026-07-30",
+    "2026-07-31"
   ],
   "boards": {
     "dd_new": {
@@ -19,15 +20,18 @@
         1,
         2,
         1,
-        2
+        2,
+        1
       ],
       "小剧场普通版": [
         null,
         18,
         48,
-        42
+        42,
+        23
       ],
       "历史1": [
+        null,
         null,
         null,
         null,
@@ -37,9 +41,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史3": [
+        null,
         null,
         null,
         null,
@@ -49,9 +55,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史5": [
+        null,
         null,
         null,
         null,
@@ -61,9 +69,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史7": [
+        null,
         null,
         null,
         null,
@@ -73,9 +83,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史9": [
+        null,
         null,
         null,
         null,
@@ -85,9 +97,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史11": [
+        null,
         null,
         null,
         null,
@@ -97,9 +111,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史13": [
+        null,
         null,
         null,
         null,
@@ -109,9 +125,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史15": [
+        null,
         null,
         null,
         null,
@@ -121,9 +139,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1": [
+        null,
         null,
         null,
         null,
@@ -133,9 +153,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史1-16套装": [
+        null,
         null,
         null,
         null,
@@ -145,9 +167,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史1-3套装": [
+        null,
         null,
         null,
         null,
@@ -159,9 +183,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -171,15 +197,18 @@
         439,
         352,
         null,
+        null,
         null
       ],
       "历史2": [
         null,
         490,
         null,
+        null,
         null
       ],
       "历史3": [
+        null,
         null,
         null,
         null,
@@ -189,9 +218,11 @@
         null,
         473,
         null,
+        null,
         null
       ],
       "历史5": [
+        null,
         null,
         null,
         null,
@@ -201,9 +232,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史7": [
+        null,
         null,
         null,
         null,
@@ -213,9 +246,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史9": [
+        null,
         null,
         null,
         null,
@@ -225,9 +260,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史11": [
+        null,
         null,
         null,
         null,
@@ -237,10 +274,12 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史13": [
         438,
+        null,
         null,
         null,
         null
@@ -249,10 +288,12 @@
         431,
         null,
         null,
+        null,
         null
       ],
       "历史15": [
         327,
+        null,
         null,
         null,
         null
@@ -261,21 +302,25 @@
         130,
         195,
         255,
-        272
+        272,
+        209
       ],
       "西游1": [
         201,
         161,
         286,
-        258
+        258,
+        282
       ],
       "西游2": [
         65,
         87,
         122,
-        107
+        107,
+        120
       ],
       "历史1-16套装": [
+        null,
         null,
         null,
         null,
@@ -285,9 +330,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史1-3套装": [
+        null,
         null,
         null,
         null,
@@ -299,21 +346,25 @@
         1,
         15,
         9,
+        13,
         13
       ],
       "小剧场京东特典版": [
         10,
         null,
         null,
+        7,
         7
       ],
       "历史1": [
         null,
         null,
         null,
+        74,
         74
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -323,9 +374,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -335,9 +388,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -347,9 +402,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -359,9 +416,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -371,9 +430,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -383,9 +444,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -395,9 +458,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -407,9 +472,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -419,9 +486,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -431,9 +500,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -445,15 +516,18 @@
         1,
         7,
         6,
+        8,
         8
       ],
       "小剧场京东特典版": [
         7,
         56,
         66,
+        6,
         6
       ],
       "历史1": [
+        null,
         null,
         null,
         null,
@@ -463,9 +537,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史3": [
+        null,
         null,
         null,
         null,
@@ -475,9 +551,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史5": [
+        null,
         null,
         null,
         null,
@@ -487,9 +565,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史7": [
+        null,
         null,
         null,
         null,
@@ -499,9 +579,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史9": [
+        null,
         null,
         null,
         null,
@@ -511,9 +593,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史11": [
+        null,
         null,
         null,
         null,
@@ -523,9 +607,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史13": [
+        null,
         null,
         null,
         null,
@@ -535,9 +621,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史15": [
+        null,
         null,
         null,
         null,
@@ -547,9 +635,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1": [
+        null,
         null,
         null,
         null,
@@ -559,9 +649,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史1-16套装": [
+        null,
         null,
         null,
         null,
@@ -571,15 +663,18 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史1-3套装": [
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -591,9 +686,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -603,9 +700,11 @@
         48,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -615,9 +714,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -627,9 +728,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -639,9 +742,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -651,9 +756,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -663,9 +770,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -675,10 +784,12 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
         86,
+        null,
         null,
         null,
         null
@@ -687,10 +798,12 @@
         52,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
         33,
+        null,
         null,
         null,
         null
@@ -699,10 +812,12 @@
         16,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
         20,
+        null,
         null,
         null,
         null
@@ -711,9 +826,11 @@
         6,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -723,9 +840,11 @@
         57,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -737,9 +856,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -749,9 +870,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -761,9 +884,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -773,9 +898,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -785,9 +912,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -797,9 +926,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -809,9 +940,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -821,9 +954,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -833,9 +968,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -845,9 +982,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -857,9 +996,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -869,9 +1010,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -883,9 +1026,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -895,9 +1040,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -907,9 +1054,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -919,9 +1068,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -931,9 +1082,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -943,9 +1096,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -955,9 +1110,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -967,9 +1124,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -979,9 +1138,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -991,9 +1152,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -1003,9 +1166,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -1015,9 +1180,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -1029,15 +1196,18 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
         40,
         45,
         33,
+        43,
         43
       ],
       "历史1": [
+        null,
         null,
         null,
         null,
@@ -1047,9 +1217,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史3": [
+        null,
         null,
         null,
         null,
@@ -1059,9 +1231,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史5": [
+        null,
         null,
         null,
         null,
@@ -1071,9 +1245,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史7": [
+        null,
         null,
         null,
         null,
@@ -1083,9 +1259,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史9": [
+        null,
         null,
         null,
         null,
@@ -1095,9 +1273,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史11": [
+        null,
         null,
         null,
         null,
@@ -1107,9 +1287,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史13": [
+        null,
         null,
         null,
         null,
@@ -1119,9 +1301,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史15": [
+        null,
         null,
         null,
         null,
@@ -1131,9 +1315,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1": [
+        null,
         null,
         null,
         null,
@@ -1143,9 +1329,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史1-16套装": [
+        null,
         null,
         null,
         null,
@@ -1155,15 +1343,18 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史1-3套装": [
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -1175,9 +1366,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -1187,9 +1380,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -1199,9 +1394,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -1211,9 +1408,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -1223,9 +1422,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -1235,9 +1436,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -1247,9 +1450,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -1259,9 +1464,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -1271,9 +1478,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -1283,9 +1492,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -1295,9 +1506,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -1307,9 +1520,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -1321,9 +1536,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -1333,9 +1550,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -1345,9 +1564,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -1357,9 +1578,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -1369,9 +1592,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -1381,9 +1606,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -1393,9 +1620,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -1405,9 +1634,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -1417,9 +1648,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -1429,9 +1662,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -1441,9 +1676,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -1453,9 +1690,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -1467,9 +1706,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -1479,9 +1720,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -1491,9 +1734,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -1503,9 +1748,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -1515,9 +1762,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -1527,9 +1776,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -1539,9 +1790,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -1551,9 +1804,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -1563,9 +1818,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -1575,9 +1832,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -1587,9 +1846,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -1599,9 +1860,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -1613,9 +1876,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -1625,9 +1890,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -1637,9 +1904,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -1649,9 +1918,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -1661,9 +1932,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -1673,9 +1946,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -1685,9 +1960,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -1697,9 +1974,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -1709,9 +1988,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -1721,9 +2002,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -1733,9 +2016,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -1745,9 +2030,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -1759,9 +2046,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -1771,9 +2060,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -1783,9 +2074,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -1795,9 +2088,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -1807,9 +2102,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -1819,9 +2116,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -1831,9 +2130,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -1843,9 +2144,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -1855,9 +2158,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -1867,9 +2172,11 @@
         61,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -1879,9 +2186,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -1891,9 +2200,11 @@
         57,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -1905,9 +2216,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -1917,9 +2230,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -1929,9 +2244,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -1941,9 +2258,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -1953,9 +2272,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -1965,9 +2286,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -1977,9 +2300,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -1989,9 +2314,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -2001,9 +2328,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -2013,9 +2342,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -2025,9 +2356,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -2037,9 +2370,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -2051,9 +2386,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -2063,9 +2400,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -2075,9 +2414,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -2087,9 +2428,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -2099,9 +2442,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -2111,9 +2456,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -2123,9 +2470,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -2135,9 +2484,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -2147,9 +2498,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -2159,9 +2512,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -2171,9 +2526,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -2183,9 +2540,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -2197,9 +2556,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -2209,9 +2570,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -2221,9 +2584,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -2233,9 +2598,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -2245,9 +2612,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -2257,9 +2626,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -2269,9 +2640,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -2281,9 +2654,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -2293,9 +2668,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -2305,9 +2682,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -2317,9 +2696,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -2329,9 +2710,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -2343,9 +2726,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -2355,9 +2740,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -2367,9 +2754,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -2379,9 +2768,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -2391,9 +2782,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -2403,9 +2796,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -2415,9 +2810,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -2427,9 +2824,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -2439,9 +2838,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -2451,9 +2852,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -2463,9 +2866,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -2475,9 +2880,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -2489,9 +2896,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -2501,9 +2910,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -2513,9 +2924,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -2525,9 +2938,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -2537,9 +2952,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -2549,9 +2966,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -2561,9 +2980,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -2573,9 +2994,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -2585,9 +3008,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -2597,9 +3022,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -2609,9 +3036,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -2621,9 +3050,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -2635,9 +3066,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -2647,9 +3080,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -2659,9 +3094,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -2671,9 +3108,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -2683,9 +3122,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -2695,9 +3136,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -2707,9 +3150,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -2719,9 +3164,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -2731,9 +3178,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -2743,9 +3192,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -2755,15 +3206,18 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
         null,
         null,
         null,
+        null,
         null
       ],
       "历史1-3套装": [
+        null,
         null,
         null,
         null,
@@ -2773,11 +3227,13 @@
         null,
         null,
         65,
+        null,
         null
       ]
     },
     "jd_new_青春文学": {
       "小剧场印签版": [
+        null,
         null,
         null,
         null,
@@ -2787,9 +3243,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史1": [
+        null,
         null,
         null,
         null,
@@ -2799,9 +3257,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史3": [
+        null,
         null,
         null,
         null,
@@ -2811,9 +3271,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史5": [
+        null,
         null,
         null,
         null,
@@ -2823,9 +3285,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史7": [
+        null,
         null,
         null,
         null,
@@ -2835,9 +3299,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史9": [
+        null,
         null,
         null,
         null,
@@ -2847,9 +3313,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史11": [
+        null,
         null,
         null,
         null,
@@ -2859,9 +3327,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史13": [
+        null,
         null,
         null,
         null,
@@ -2871,9 +3341,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史15": [
+        null,
         null,
         null,
         null,
@@ -2883,9 +3355,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1": [
+        null,
         null,
         null,
         null,
@@ -2895,9 +3369,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史1-16套装": [
+        null,
         null,
         null,
         null,
@@ -2907,15 +3383,18 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史1-3套装": [
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -2927,9 +3406,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -2939,9 +3420,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -2951,9 +3434,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -2963,9 +3448,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -2975,9 +3462,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -2987,9 +3476,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -2999,9 +3490,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -3011,9 +3504,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -3023,9 +3518,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -3035,9 +3532,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -3047,9 +3546,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -3059,9 +3560,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -3073,9 +3576,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -3085,9 +3590,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -3097,9 +3604,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -3109,9 +3618,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -3121,9 +3632,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -3133,9 +3646,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -3145,9 +3660,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -3157,9 +3674,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -3169,9 +3688,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -3181,9 +3702,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -3193,9 +3716,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -3205,9 +3730,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -3219,113 +3746,132 @@
         1,
         1,
         1,
+        2,
         2
       ],
       "小剧场京东特典版": [
         2,
         6,
         5,
+        1,
         1
       ],
       "历史1": [
         7,
         9,
         9,
+        3,
         3
       ],
       "历史2": [
         24,
         32,
         23,
+        5,
         5
       ],
       "历史3": [
         32,
         25,
         21,
+        11,
         11
       ],
       "历史4": [
         33,
         39,
         24,
+        12,
         12
       ],
       "历史5": [
         23,
         26,
         28,
+        15,
         15
       ],
       "历史6": [
         26,
         21,
         31,
+        28,
         28
       ],
       "历史7": [
         27,
         14,
         42,
+        8,
         8
       ],
       "历史8": [
         31,
         28,
         33,
+        29,
         29
       ],
       "历史9": [
         21,
         34,
         56,
+        27,
         27
       ],
       "历史10": [
         29,
         46,
         35,
+        18,
         18
       ],
       "历史11": [
         34,
         23,
         27,
+        24,
         24
       ],
       "历史12": [
         30,
         24,
         32,
+        38,
         38
       ],
       "历史13": [
         17,
         17,
         17,
+        35,
         35
       ],
       "历史14": [
         8,
         20,
         14,
+        16,
         16
       ],
       "历史15": [
         6,
         13,
         3,
+        25,
         25
       ],
       "历史16": [
         3,
         8,
         4,
+        6,
         6
       ],
       "西游1": [
         5,
         5,
+        7,
         7,
         7
       ],
@@ -3333,15 +3879,18 @@
         4,
         4,
         6,
+        10,
         10
       ],
       "历史1-16套装": [
         15,
         7,
         8,
+        19,
         19
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -3351,9 +3900,11 @@
         28,
         38,
         43,
+        39,
         39
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -3365,15 +3916,18 @@
         1,
         1,
         1,
+        2,
         2
       ],
       "小剧场京东特典版": [
         2,
         2,
         3,
+        1,
         1
       ],
       "历史1": [
+        null,
         null,
         null,
         null,
@@ -3383,9 +3937,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史3": [
+        null,
         null,
         null,
         null,
@@ -3395,9 +3951,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史5": [
+        null,
         null,
         null,
         null,
@@ -3407,9 +3965,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史7": [
+        null,
         null,
         null,
         null,
@@ -3419,9 +3979,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史9": [
+        null,
         null,
         null,
         null,
@@ -3431,9 +3993,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史11": [
+        null,
         null,
         null,
         null,
@@ -3443,9 +4007,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史13": [
+        null,
         null,
         null,
         null,
@@ -3455,9 +4021,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史15": [
+        null,
         null,
         null,
         null,
@@ -3467,15 +4035,18 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1": [
         null,
         57,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -3485,9 +4056,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -3497,9 +4070,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -3511,9 +4086,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -3523,9 +4100,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -3535,9 +4114,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -3547,9 +4128,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -3559,9 +4142,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -3571,9 +4156,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -3583,9 +4170,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -3595,9 +4184,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -3607,9 +4198,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -3619,9 +4212,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -3631,9 +4226,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -3643,9 +4240,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -3657,9 +4256,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -3669,9 +4270,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -3681,9 +4284,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -3693,9 +4298,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -3705,9 +4312,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -3717,9 +4326,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -3729,9 +4340,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -3741,9 +4354,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -3753,9 +4368,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -3765,9 +4382,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -3777,9 +4396,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -3789,9 +4410,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -3803,9 +4426,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -3815,9 +4440,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -3827,9 +4454,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -3839,9 +4468,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -3851,9 +4482,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -3863,9 +4496,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -3875,9 +4510,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -3887,9 +4524,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -3899,9 +4538,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -3911,9 +4552,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -3923,9 +4566,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -3935,9 +4580,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -3949,9 +4596,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -3961,9 +4610,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -3973,9 +4624,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -3985,9 +4638,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -3997,9 +4652,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -4009,9 +4666,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -4021,9 +4680,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -4033,9 +4694,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -4045,9 +4708,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -4057,9 +4722,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -4069,9 +4736,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -4081,9 +4750,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -4095,9 +4766,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -4107,9 +4780,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -4119,9 +4794,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -4131,9 +4808,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -4143,9 +4822,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -4155,9 +4836,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -4167,9 +4850,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -4179,9 +4864,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -4191,9 +4878,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -4203,9 +4892,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -4215,9 +4906,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -4227,9 +4920,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -4241,9 +4936,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场京东特典版": [
+        null,
         null,
         null,
         null,
@@ -4253,9 +4950,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史2": [
+        null,
         null,
         null,
         null,
@@ -4265,9 +4964,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史4": [
+        null,
         null,
         null,
         null,
@@ -4277,9 +4978,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史6": [
+        null,
         null,
         null,
         null,
@@ -4289,9 +4992,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史8": [
+        null,
         null,
         null,
         null,
@@ -4301,9 +5006,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史10": [
+        null,
         null,
         null,
         null,
@@ -4313,9 +5020,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史12": [
+        null,
         null,
         null,
         null,
@@ -4325,9 +5034,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史14": [
+        null,
         null,
         null,
         null,
@@ -4337,9 +5048,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史16": [
+        null,
         null,
         null,
         null,
@@ -4349,9 +5062,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游2": [
+        null,
         null,
         null,
         null,
@@ -4361,9 +5076,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -4373,9 +5090,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -4387,9 +5106,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "小剧场普通版": [
+        null,
         null,
         null,
         null,
@@ -4399,89 +5120,104 @@
         null,
         8,
         12,
+        9,
         9
       ],
       "历史2": [
         null,
         12,
         19,
+        18,
         18
       ],
       "历史3": [
         null,
         14,
         31,
+        19,
         19
       ],
       "历史4": [
         null,
         11,
         17,
+        21,
         21
       ],
       "历史5": [
         null,
         15,
         18,
+        17,
         17
       ],
       "历史6": [
         null,
         21,
         33,
+        55,
         55
       ],
       "历史7": [
         null,
         38,
         36,
+        26,
         26
       ],
       "历史8": [
         null,
         32,
         16,
+        25,
         25
       ],
       "历史9": [
         null,
         39,
         32,
+        43,
         43
       ],
       "历史10": [
         null,
         50,
         21,
+        33,
         33
       ],
       "历史11": [
         null,
         31,
         45,
+        32,
         32
       ],
       "历史12": [
         null,
         47,
         49,
+        31,
         31
       ],
       "历史13": [
         null,
         25,
         29,
+        16,
         16
       ],
       "历史14": [
         null,
         18,
         22,
+        15,
         15
       ],
       "历史15": [
         null,
         13,
+        11,
         11,
         11
       ],
@@ -4489,16 +5225,19 @@
         null,
         3,
         4,
+        4,
         4
       ],
       "西游1": [
         null,
         2,
         5,
+        3,
         3
       ],
       "西游2": [
         null,
+        1,
         1,
         1,
         1
@@ -4507,9 +5246,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1-2套装": [
+        null,
         null,
         null,
         null,
@@ -4519,6 +5260,7 @@
         null,
         99,
         null,
+        179,
         179
       ]
     },
@@ -4527,15 +5269,18 @@
         null,
         1,
         1,
+        1,
         1
       ],
       "小剧场普通版": [
         null,
         4,
         9,
+        6,
         6
       ],
       "历史1": [
+        null,
         null,
         null,
         null,
@@ -4545,9 +5290,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史3": [
+        null,
         null,
         null,
         null,
@@ -4557,9 +5304,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史5": [
+        null,
         null,
         null,
         null,
@@ -4569,9 +5318,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史7": [
+        null,
         null,
         null,
         null,
@@ -4581,9 +5332,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史9": [
+        null,
         null,
         null,
         null,
@@ -4593,9 +5346,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史11": [
+        null,
         null,
         null,
         null,
@@ -4605,9 +5360,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史13": [
+        null,
         null,
         null,
         null,
@@ -4617,9 +5374,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史15": [
+        null,
         null,
         null,
         null,
@@ -4629,9 +5388,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "西游1": [
+        null,
         null,
         null,
         null,
@@ -4641,9 +5402,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史1-16套装": [
+        null,
         null,
         null,
         null,
@@ -4653,9 +5416,11 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "历史1-3套装": [
+        null,
         null,
         null,
         null,
@@ -4788,10 +5553,10 @@
       "last_change": "2026-07-30 12:59"
     },
     "dd_best": {
-      "last_change": "2026-07-30 22:04"
+      "last_change": "2026-07-31 07:11"
     },
     "dd_new": {
-      "last_change": "2026-07-30 22:04"
+      "last_change": "2026-07-31 07:11"
     },
     "dd_best_动漫幽默": {
       "last_change": "2026-07-30 22:04"
