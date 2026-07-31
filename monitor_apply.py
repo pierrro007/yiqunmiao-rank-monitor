@@ -68,6 +68,44 @@ BOARDS = list(EXPECTED.keys())
 # 全部 board 名（含子榜），用于初始化空历史
 ALL_BOARDS = BOARDS
 
+# 当日各榜变化明细累积文件（与 rank-history.json 分离，避免污染 git 历史）
+# - cloud-changes.json：云端(jd_ddmain 模式)拥有，含京东全榜 + 当当主榜
+# - dd-changes.json：本机(dd_sub 模式)拥有，含当当子榜(动漫/幽默)
+# 每个文件结构：{ "2026-07-31": ["jd_sales/历史1: 第5名 -> 第3名", ...] }
+CHANGES_FILES = {
+    "cloud": os.path.join(BASE, "cloud-changes.json"),
+    "dd": os.path.join(BASE, "dd-changes.json"),
+}
+
+
+def side_for_mode(mode):
+    """根据 FETCH_MODE 判断本轮变化明细归哪个文件（避免双 writer 写同一文件）。"""
+    mode = (mode or "all").lower()
+    if mode in ("dd", "dd_sub"):
+        return "dd"
+    return "cloud"
+
+
+def append_changes(detail_list):
+    """把本轮变化明细按日期累积到对应 side 的变化文件（幂等，不重复追加）。"""
+    if not detail_list:
+        return
+    side = side_for_mode(os.environ.get("FETCH_MODE"))
+    path = CHANGES_FILES[side]
+    data = {}
+    if os.path.exists(path):
+        try:
+            data = json.load(open(path, encoding="utf-8"))
+        except Exception:
+            data = {}
+    data.setdefault(today_str(), [])
+    existing = set(data[today_str()])
+    for d in detail_list:
+        if d not in existing:
+            data[today_str()].append(d)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
 
 def beijing_now():
     return datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8)))
@@ -222,6 +260,8 @@ def main():
         for b in changed_boards:
             board_meta.setdefault(b, {})["last_change"] = now_str
         hist["board_meta"] = board_meta
+        # 累积当日各榜变化明细（供飞书「全部更新」消息展示）
+        append_changes(detail)
         with open(JSON_PATH, "w", encoding="utf-8") as f:
             json.dump(hist, f, ensure_ascii=False, indent=2)
     else:

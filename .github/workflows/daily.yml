@@ -7,7 +7,7 @@ on:
   # 允许在 Actions 页面手动点一下立即跑（用于测试）
   workflow_dispatch:
 
-# 允许 workflow 把更新后的 rank-history.json 提交回仓库
+# 允许 workflow 把更新后的 rank-history.json / 状态文件 提交回仓库
 permissions:
   contents: write
 
@@ -19,6 +19,9 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
 
+      - name: 拉取最新（含本机回传的 dd-status / dd-changes）
+        run: git pull --rebase origin main || true
+
       - name: 配置 Python
         uses: actions/setup-python@v5
         with:
@@ -29,6 +32,31 @@ jobs:
           FETCH_MODE: jd_ddmain
         run: python3 monitor_run.py | tee result.json
 
+      - name: 写云端心跳（jd-status.json，记录云端今日已运行）
+        run: |
+          python3 - <<'PY'
+          import json, os, datetime
+          tz = datetime.timezone(datetime.timedelta(hours=8))
+          today = datetime.datetime.now(tz).strftime("%Y-%m-%d")
+          p = "jd-status.json"
+          cur = {}
+          if os.path.exists(p):
+              try: cur = json.load(open(p, encoding="utf-8"))
+              except Exception: pass
+          if cur.get("date") != today:
+              json.dump({"date": today}, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+              print("jd-status 更新为", today)
+          else:
+              print("jd-status 已为今日，跳过")
+          PY
+
+      - name: 飞书每日推送（全部更新才发；22:00 未全部更新则提醒）
+        if: always()
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+        run: python3 feishu_daily.py
+
       - name: 提交并推送变化
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -38,18 +66,15 @@ jobs:
           git add rank-history.json
           # product-map.json：商品ID→书名映射（书改名也认得出），需一并持久化
           [ -f product-map.json ] && git add product-map.json
+          # 当日变化明细（云端侧）与状态文件
+          [ -f cloud-changes.json ] && git add cloud-changes.json
+          [ -f jd-status.json ] && git add jd-status.json
+          [ -f feishu-state.json ] && git add feishu-state.json
           if git diff --cached --quiet; then
-            echo "今日数据无变化，跳过提交"
+            echo "今日数据及状态均无变化，跳过提交"
           else
             git commit -m "chore: 每日排行榜更新 $(TZ=Asia/Shanghai date +%F)"
             # 合入本机 dd_sub 可能的并发改动（避免双 writer 覆盖冲突）
             git pull --rebase origin main || true
             git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }}.git HEAD:main
           fi
-
-      - name: 推送飞书（有变化时）
-        if: always()
-        env:
-          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
-          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
-        run: python3 feishu_push.py

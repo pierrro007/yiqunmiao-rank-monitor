@@ -13,3 +13,6 @@ result.json
 
 # 本地 GitHub 令牌（不进仓库；sync_dd.py 会读取 ~/.config/yiqunmiao/token 或本文件）
 .sync_token
+
+# WorkBuddy 本地记忆（不进仓库）
+.workbuddy/

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-sync_dd.py —— 在中国境内环境定时采集「当当」榜单（含子榜），回传到 GitHub 仓库。
+sync_dd.py —— 在中国境内环境定时采集「当当」子榜，回传到 GitHub 仓库。
 
 为什么不用 git commit/push？
   云端 Actions 也在写同一个 rank-history.json（京东部分），两个 writer 用普通
@@ -12,10 +12,12 @@ sync_dd.py —— 在中国境内环境定时采集「当当」榜单（含子�
   注：本环境 urllib 直连 API 上传会遇 SSL 中断，故一律走 curl（与仓库其他脚本一致）。
 
 数据流：
-  1) 拉取仓库最新 rank-history.json / product-map.json 到本地（基于云端最新版）
-  2) FETCH_MODE=dd 运行 monitor_run.py（仅抓当当，变化判定+落库，京东部分 carry-forward 保留）
-  3) 仅当数据确实变化时才用 Contents API 回传（无变化跳过，避免空提交/空推送）
-  4) 运行飞书推送（仅当当当侧有变化时；需 FEISHU_WEBHOOK 环境变量/本地配置）
+  1) 拉取仓库最新 rank-history.json / product-map.json / dd-status.json / dd-changes.json
+  2) FETCH_MODE=dd_sub 运行 monitor_run.py（仅抓当当子榜，变化判定+落库；
+     monitor_apply 会把本轮变化明细累积写入 dd-changes.json）
+  3) 写入 dd-status.json（记录本机今日已运行，供云端判定「当当子榜是否已更新」）
+  4) 仅当相关文件内容真变化时才用 Contents API 回传（无变化跳过，避免空提交）
+  5) 飞书推送统一由云端 feishu_daily.py 负责（保证「全部更新才发」），本机不再单独发。
 
 令牌读取（不再明文写在命令行/自动化里）：
   优先级：环境变量 GH_TOKEN → 本地文件 ~/.config/yiqunmiao/token → 本地文件 <仓库>/.sync_token
@@ -27,12 +29,18 @@ import json
 import base64
 import hashlib
 import subprocess
+import datetime
 
 REPO = "pierrro007/yiqunmiao-rank-monitor"
 BASE = os.path.dirname(os.path.abspath(__file__))
 RH = os.path.join(BASE, "rank-history.json")
 PM = os.path.join(BASE, "product-map.json")
 RESULT = os.path.join(BASE, "result.json")
+DD_STATUS = os.path.join(BASE, "dd-status.json")
+DD_CHANGES = os.path.join(BASE, "dd-changes.json")
+
+# 本机负责同步/回传的文件（rank-history/product-map 由本机写；状态与明细仅本机写）
+SYNC_FILES = ["rank-history.json", "product-map.json", "dd-changes.json", "dd-status.json"]
 
 TOKEN = ""  # 在 main() 中由 load_token() 赋值
 
@@ -66,46 +74,67 @@ def _curl(args):
 
 def api_get(path):
     out = _curl(["https://api.github.com/repos/%s/contents/%s?ref=main" % (REPO, path)])
-    return json.loads(out)
+    if not out.strip():
+        return None
+    try:
+        return json.loads(out)
+    except Exception:
+        return None
 
 
 def api_put(path, content_str, sha):
     body = {
-        "message": "chore: 当当榜单更新(中国境内 DD 模式)",
+        "message": "chore: 当当子榜更新(中国境内 DD 模式)",
         "content": base64.b64encode(content_str.encode("utf-8")).decode("ascii"),
-        "sha": sha,
         "branch": "main",
     }
+    if sha:
+        body["sha"] = sha
     out = _curl([
         "-X", "PUT",
         "-H", "Content-Type: application/json",
         "-d", json.dumps(body),
         "https://api.github.com/repos/%s/contents/%s" % (REPO, path),
     ])
-    return json.loads(out)
+    if "409" in out or "SHA does not match" in out:
+        raise RuntimeError("409 SHA does not match")
+    try:
+        return json.loads(out)
+    except Exception:
+        raise RuntimeError("api_put 失败: " + out[:200])
 
 
 def sha256_file(p):
     return hashlib.sha256(open(p, "rb").read()).hexdigest()
 
 
-def download(path, local):
-    meta = api_get(path)
-    data = base64.b64decode(meta["content"]).decode("utf-8")
-    with open(local, "w", encoding="utf-8") as f:
-        f.write(data)
-    return meta["sha"]
+def beijing_today():
+    return datetime.datetime.now(
+        datetime.timezone(datetime.timedelta(hours=8))
+    ).strftime("%Y-%m-%d")
 
 
 def pull():
-    """拉取仓库最新两份文件，返回 (sha_rh, sha_pm, 本地内容哈希_rh, 本地内容哈希_pm)。"""
-    sha_rh = download("rank-history.json", RH)
-    sha_pm = download("product-map.json", PM)
-    return sha_rh, sha_pm, sha256_file(RH), sha256_file(PM)
+    """拉取最新四份文件；返回 {name: {"git_sha","orig_sha256","existed"}}。"""
+    info = {}
+    for name in SYNC_FILES:
+        meta = api_get(name)
+        if meta and "content" in meta:
+            content = base64.b64decode(meta["content"]).decode("utf-8")
+            with open(os.path.join(BASE, name), "w", encoding="utf-8") as f:
+                f.write(content)
+            info[name] = {
+                "git_sha": meta.get("sha"),
+                "orig_sha256": hashlib.sha256(content.encode("utf-8")).hexdigest(),
+                "existed": True,
+            }
+        else:
+            info[name] = {"git_sha": None, "orig_sha256": None, "existed": False}
+    return info
 
 
 def run_dd():
-    """仅抓当当子榜并落库。monitor_run 的 stdout 写入 result.json 供飞书读取。"""
+    """仅抓当当子榜并落库。monitor_run 的 stdout 写入 result.json（备用）。"""
     env = dict(os.environ)
     env["FETCH_MODE"] = "dd_sub"
     r = subprocess.run(
@@ -120,12 +149,43 @@ def run_dd():
         print("monitor_run 失败:", r.stderr[-300:])
 
 
-def push_feishu():
-    """运行飞书推送（仅当 result.json 标记有变化时才会真正推送）。"""
-    try:
-        subprocess.run([sys.executable, "feishu_push.py"], cwd=BASE, env=os.environ)
-    except Exception as e:
-        print("飞书推送异常(忽略):", e)
+def write_dd_status():
+    """记录本机今日已运行当当同步（供云端判定「当当子榜是否已更新」）。"""
+    today = beijing_today()
+    data = {"date": today}
+    if os.path.exists(DD_STATUS):
+        try:
+            if json.load(open(DD_STATUS, encoding="utf-8")).get("date") == today:
+                return  # 今日已写过，无需改动（避免无谓回传）
+        except Exception:
+            pass
+    with open(DD_STATUS, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+
+def changed_files(info):
+    """返回内容相对拉取时变化的文件名集合。"""
+    out = set()
+    for name in SYNC_FILES:
+        p = os.path.join(BASE, name)
+        if not os.path.exists(p):
+            continue
+        cur = sha256_file(p)
+        orig = info[name]["orig_sha256"]
+        if orig is None or cur != orig:
+            out.add(name)
+    return out
+
+
+def push_files(info, files):
+    for name in files:
+        p = os.path.join(BASE, name)
+        if not os.path.exists(p):
+            continue
+        sha = info[name]["git_sha"]
+        content = open(p, encoding="utf-8").read()
+        api_put(name, content, sha)
+        print("✅ 已回传 %s" % name)
 
 
 def main():
@@ -135,39 +195,25 @@ def main():
         print("❌ 缺少 GitHub 令牌：请设置 GH_TOKEN 环境变量，或将令牌写入 ~/.config/yiqunmiao/token")
         sys.exit(1)
 
-    sha_rh, sha_pm, orig_rh, orig_pm = pull()
-    run_dd()
-
-    # 检测数据是否真的变了（避免无意义的空回传/空提交）
-    cur_rh = sha256_file(RH)
-    cur_pm = sha256_file(PM)
-    if cur_rh == orig_rh and cur_pm == orig_pm:
-        print("✅ 当当数据无变化，跳过回传（无空提交）")
-        push_feishu()  # 仍跑飞书：changed=False 时会自动跳过推送
-        return
-
     for attempt in range(4):
+        info = pull()
+        run_dd()
+        write_dd_status()
+        diff = changed_files(info)
+        if not diff:
+            print("✅ 当当数据及状态均无变化，跳过回传（无空提交）")
+            return
         try:
-            if cur_rh != orig_rh:
-                api_put("rank-history.json", open(RH, encoding="utf-8").read(), sha_rh)
-            if cur_pm != orig_pm:
-                api_put("product-map.json", open(PM, encoding="utf-8").read(), sha_pm)
-            print("✅ 已回传当当数据到仓库")
-            break
-        except Exception as e:
-            msg = str(e)
-            # curl 拿到 409 时 GitHub 返回 JSON，含 "message":"SHA does not match"
-            if "409" in msg or "SHA does not match" in msg:
+            push_files(info, diff)
+            print("✅ 当当同步完成，已回传: %s" % ", ".join(sorted(diff)))
+            return
+        except RuntimeError as e:
+            if "409" in str(e):
                 print("⚠️ SHA 过期（云端有新提交），重新拉取并应用后重试 (%d)…" % (attempt + 1))
-                sha_rh, sha_pm, orig_rh, orig_pm = pull()
-                run_dd()
-                cur_rh = sha256_file(RH)
-                cur_pm = sha256_file(PM)
                 continue
-            print("❌ 回传失败:", msg[:200])
-            break
-
-    push_feishu()
+            print("❌ 回传失败:", e)
+            return
+    print("❌ 多次重试仍失败，放弃本次回传")
 
 
 if __name__ == "__main__":

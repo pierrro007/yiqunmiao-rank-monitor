@@ -189,3 +189,39 @@ def test_board_meta_records_last_change(workdir):
     for b in inp:
         if b != b0 and b not in seed_bm:
             assert b not in h1["board_meta"], "未变化榜不应出现: " + b
+
+
+def test_append_changes_writes_correct_side(workdir):
+    """变化明细按 FETCH_MODE 写入对应文件：jd_ddmain -> cloud-changes.json；dd_sub -> dd-changes.json。"""
+    h0 = json.load(open(workdir / "rank-history.json", encoding="utf-8"))
+    # 云端模式：改一个京东榜
+    inp = base_input(h0["boards"])
+    b0 = next(b for b in inp if b.startswith("jd_") and inp[b])
+    k0 = next(iter(inp[b0]))
+    inp[b0][k0] = (inp[b0][k0] if inp[b0][k0] is not None else 0) + 1
+    r = subprocess.run(
+        [sys.executable, str(workdir / "monitor_apply.py")],
+        input=json.dumps(inp, ensure_ascii=False),
+        capture_output=True, text=True,
+        env={**os.environ, "FETCH_MODE": "jd_ddmain"},
+    )
+    assert r.returncode == 0, r.stderr[-300:]
+    cc = json.load(open(workdir / "cloud-changes.json", encoding="utf-8"))
+    assert any(b0 in d for lst in cc.values() for d in lst), "云端变化未写入 cloud-changes.json"
+    assert not (workdir / "dd-changes.json").exists(), "dd_sub 文件不应被云端模式创建"
+
+    # 本机模式：改当当子榜（沿用同一 workdir，cloud-changes 已存在）
+    inp2 = base_input(h0["boards"])
+    inp2["dd_best_动漫幽默"] = {"西游2": 999, "西游1": 2}
+    r2 = subprocess.run(
+        [sys.executable, str(workdir / "monitor_apply.py")],
+        input=json.dumps(inp2, ensure_ascii=False),
+        capture_output=True, text=True,
+        env={**os.environ, "FETCH_MODE": "dd_sub"},
+    )
+    assert r2.returncode == 0, r2.stderr[-300:]
+    ddc = json.load(open(workdir / "dd-changes.json", encoding="utf-8"))
+    assert any("dd_best_动漫幽默" in d for lst in ddc.values() for d in lst), "本机变化未写入 dd-changes.json"
+    # 云端模式那次不应污染 dd-changes（明细按 side 隔离）
+    cc2 = json.load(open(workdir / "cloud-changes.json", encoding="utf-8"))
+    assert not any("dd_best_动漫幽默" in d for lst in cc2.values() for d in lst), "云端文件被本机明细污染"
