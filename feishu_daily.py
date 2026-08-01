@@ -147,7 +147,8 @@ def main():
 
     is_manual = os.environ.get("GITHUB_EVENT_NAME", "") == "workflow_dispatch"
 
-    # 手动触发：发一条「状态核对」消息，便于验证通路（不计入每日推送）
+    # 手动触发：先发一条「状态核对」消息，便于验证通路；
+    # 不 return —— 继续走下方每日/提醒逻辑，使手动触发也能补发当日消息（feishu-state 防重复）
     if is_manual:
         text = (
             "【一群喵榜单·状态核对】\n"
@@ -158,7 +159,6 @@ def main():
             % ("是" if jd_done else "否", "是" if dd_done else "否", "是" if all_updated else "否")
         )
         send(wh, secret, text)
-        return
 
     if all_updated and not state["daily_sent"]:
         cloud = (load_json(CLOUD_CHANGES, {}).get(today) or [])
