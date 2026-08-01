@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated_at": "2026-08-01 06:09",
+    "updated_at": "2026-08-01 08:05",
     "last_change_date": "2026-08-01",
     "last_probe_date": "2026-08-01",
     "changed_today": true,
@@ -23,7 +23,7 @@
         1,
         2,
         1,
-        1
+        3
       ],
       "小剧场普通版": [
         null,
@@ -6327,7 +6327,7 @@
       "last_change": "2026-08-01 06:09"
     },
     "dd_new": {
-      "last_change": "2026-08-01 06:09"
+      "last_change": "2026-08-01 08:05"
     },
     "dd_best_动漫幽默": {
       "last_change": "2026-07-31 21:13"
